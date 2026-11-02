@@ -125,6 +125,10 @@ The rules (what counts as overdue or due this week, the groupings, the tile numb
 integration tests, one of which checks that the number of queries does not grow with the number of tickets. They run
 in a Redmine 7 image with its test gems (`docker/test.Dockerfile`) and send the requests a browser would send.
 
+## Releasing
+
+Push a `vX.Y.Z` tag whose version matches `version` in `init.rb` and has an entry in `CHANGELOG.md`. CI runs the tests, builds `redmine_rubylode_home-X.Y.Z.zip` and publishes the GitHub release with the changelog entry as its notes. To build a release for a tag that already exists, use Actions, release, Run workflow.
+
 ## License
 
 GNU General Public License, version 2 or (at your option) any later version, the same as Redmine. See `LICENSE`.
