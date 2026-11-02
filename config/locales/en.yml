@@ -1,0 +1,65 @@
+en:
+  label_rubylode_home_greeting_morning: "Good morning, %{name}"
+  label_rubylode_home_greeting_afternoon: "Good afternoon, %{name}"
+  label_rubylode_home_greeting_evening: "Good evening, %{name}"
+  text_rubylode_home_summary_clear: "Nothing is assigned to you right now."
+  text_rubylode_home_summary_assigned:
+    one: "You have 1 open ticket"
+    other: "You have %{count} open tickets"
+  text_rubylode_home_summary_overdue:
+    one: "1 is overdue"
+    other: "%{count} are overdue"
+  text_rubylode_home_summary_this_week:
+    one: "1 is due this week"
+    other: "%{count} are due this week"
+
+  label_rubylode_home_classic_view: "Classic My page"
+  label_rubylode_home_back: "Back to the home view"
+  label_rubylode_home_classic_blocks: "Your My page blocks"
+  text_rubylode_home_classic_blocks: "Redmine's own blocks, as you arranged them. Add, remove and drag them here as before."
+
+  label_rubylode_home_tile_assigned_open: "Assigned to me"
+  label_rubylode_home_tile_due_this_week: "Due this week"
+  label_rubylode_home_tile_overdue: "Overdue"
+  label_rubylode_home_tile_watched: "Watching"
+  text_rubylode_home_tile_assigned_open: "Open tickets"
+  text_rubylode_home_tile_watched: "Open tickets you follow"
+  label_rubylode_home_share: "%{percent}% of your open tickets"
+
+  label_rubylode_home_card_assigned: "Assigned to me"
+  label_rubylode_home_card_due_soon: "Due soon"
+  label_rubylode_home_card_watched: "Watching"
+  label_rubylode_home_card_recently_updated: "Recently updated"
+  label_rubylode_home_group_by: "Group by"
+  label_rubylode_home_group_by_project: "Project"
+  label_rubylode_home_group_by_due_date: "Due date"
+  label_rubylode_home_view_all: "All"
+  label_rubylode_home_more_assigned: "Showing %{shown} of %{total}. See them all in the issue list"
+
+  label_rubylode_home_bucket_overdue: "Overdue"
+  label_rubylode_home_bucket_today: "Today"
+  label_rubylode_home_bucket_this_week: "Later this week"
+  label_rubylode_home_bucket_next_week: "Next week"
+  label_rubylode_home_bucket_later: "Later"
+  label_rubylode_home_bucket_no_due_date: "No due date"
+
+  label_rubylode_home_days_overdue:
+    one: "1 day overdue"
+    other: "%{count} days overdue"
+  label_rubylode_home_due_today: "Due today"
+  label_rubylode_home_due_tomorrow: "Due tomorrow"
+  label_rubylode_home_due_in_days:
+    one: "Due in 1 day"
+    other: "Due in %{count} days"
+  label_rubylode_home_due_on: "Due %{date}"
+  label_rubylode_home_done: "%{percent}% done"
+  label_rubylode_home_ago: "%{time} ago"
+
+  text_rubylode_home_empty_assigned: "Nothing is assigned to you. Pick up a ticket in one of your projects, or create one with New issue."
+  text_rubylode_home_empty_due_soon: "Nothing of yours is due in the next two weeks. Give a ticket a due date and it shows here."
+  text_rubylode_home_empty_watched: "Watch a ticket (the Watch link on its page) to follow it here."
+  text_rubylode_home_empty_recently_updated: "Tickets you create, comment on or are assigned to show here once they change."
+  text_rubylode_home_empty_activity: "Nothing has happened in your projects in the last 30 days."
+
+  label_rubylode_home_your_work: "Your work"
+  label_rubylode_home_open_home: "Open your home"

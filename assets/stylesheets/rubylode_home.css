@@ -1,0 +1,501 @@
+/*
+ * Rubylode Home. Every colour, radius and size is a custom property on .rubylode-home, so a theme can restyle the page by
+ * setting them, without touching the rules below. The defaults fall back to Redmine 7's own palette where it has one.
+ */
+.rubylode-home {
+  --rubylode-home-page-background: #f1f3f5;
+  --rubylode-home-card-background: var(--oc-white, #ffffff);
+  --rubylode-home-card-border: #e3e7eb;
+  --rubylode-home-card-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --rubylode-home-card-radius: 10px;
+  --rubylode-home-text: var(--oc-gray-9, #212529);
+  --rubylode-home-text-muted: var(--oc-gray-6, #6b7480);
+  --rubylode-home-accent: var(--oc-blue-7, #1c7ed6);
+  --rubylode-home-accent-strong: #1b4f80;
+  --rubylode-home-accent-soft: #e7f0fa;
+  --rubylode-home-warning: #c92a2a;
+  --rubylode-home-warning-soft: #fdecec;
+  --rubylode-home-caution: #a15c07;
+  --rubylode-home-caution-soft: #fff4e0;
+  --rubylode-home-success: #2b8a3e;
+  --rubylode-home-success-soft: #e9f6ec;
+  --rubylode-home-neutral-soft: #eef1f4;
+  --rubylode-home-bar-track: #e6eaee;
+  --rubylode-home-bar-fill: var(--rubylode-home-accent);
+  --rubylode-home-gap: 16px;
+  --rubylode-home-chip-radius: 999px;
+
+  color: var(--rubylode-home-text);
+}
+
+/* The soft background behind the cards, only on the My page. */
+body.controller-my.action-page #content {
+  background: var(--rubylode-home-page-background, #f1f3f5);
+}
+
+.rubylode-home *,
+.rubylode-home *::before,
+.rubylode-home *::after {
+  box-sizing: border-box;
+}
+
+.rubylode-home a {
+  color: var(--rubylode-home-accent-strong);
+}
+
+/* Header: date, greeting, one-line summary, actions. */
+.rubylode-home-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--rubylode-home-gap);
+  margin: 4px 0 20px;
+}
+
+.rubylode-home-date {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home .rubylode-home-greeting {
+  margin: 4px 0;
+  padding: 0;
+  border: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--rubylode-home-text);
+}
+
+.rubylode-home-summary {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.rubylode-home .rubylode-home-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--rubylode-home-accent);
+  border-radius: 8px;
+  background: var(--rubylode-home-accent);
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rubylode-home .rubylode-home-button:hover {
+  filter: brightness(0.95);
+  text-decoration: none;
+}
+
+.rubylode-home .rubylode-home-button--quiet {
+  border-color: var(--rubylode-home-card-border);
+  background: var(--rubylode-home-card-background);
+  color: var(--rubylode-home-text);
+  font-weight: 500;
+}
+
+/* Tiles. */
+.rubylode-home-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--rubylode-home-gap);
+  margin: 0 0 var(--rubylode-home-gap);
+  padding: 0;
+  list-style: none;
+}
+
+.rubylode-home-tile {
+  margin: 0;
+}
+
+.rubylode-home .rubylode-home-tile-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 16px 20px;
+  border: 1px solid var(--rubylode-home-card-border);
+  border-radius: var(--rubylode-home-card-radius);
+  background: var(--rubylode-home-card-background);
+  box-shadow: var(--rubylode-home-card-shadow);
+  color: var(--rubylode-home-text);
+  text-decoration: none;
+}
+
+.rubylode-home .rubylode-home-tile-link:hover {
+  border-color: var(--rubylode-home-accent);
+  text-decoration: none;
+}
+
+.rubylode-home-tile-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home-tile-count {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.rubylode-home-tile--warning .rubylode-home-tile-count {
+  color: var(--rubylode-home-warning);
+}
+
+.rubylode-home-tile-note {
+  font-size: 0.85rem;
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home-tile-bar,
+.rubylode-home-progress {
+  display: block;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--rubylode-home-bar-track);
+}
+
+.rubylode-home-tile-bar-fill,
+.rubylode-home-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--rubylode-home-bar-fill);
+}
+
+.rubylode-home-tile--warning .rubylode-home-tile-bar-fill {
+  background: var(--rubylode-home-warning);
+}
+
+/* Cards. */
+.rubylode-home-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--rubylode-home-gap);
+  align-items: start;
+}
+
+.rubylode-home-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rubylode-home-gap);
+}
+
+.rubylode-home-card,
+.rubylode-home-welcome {
+  padding: 16px 20px;
+  border: 1px solid var(--rubylode-home-card-border);
+  border-radius: var(--rubylode-home-card-radius);
+  background: var(--rubylode-home-card-background);
+  box-shadow: var(--rubylode-home-card-shadow);
+}
+
+.rubylode-home-welcome {
+  margin: 16px 0;
+  background: var(--rubylode-home-page-background);
+}
+
+.rubylode-home-welcome .rubylode-home-tiles {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.rubylode-home-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 8px;
+}
+
+.rubylode-home .rubylode-home-card-title {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--rubylode-home-text);
+}
+
+.rubylode-home-card-link {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.rubylode-home-card-link::after {
+  content: " \2192";
+}
+
+.rubylode-home-grouping {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.rubylode-home-grouping-label {
+  margin-right: 4px;
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home .rubylode-home-grouping-option {
+  padding: 2px 10px;
+  border-radius: var(--rubylode-home-chip-radius);
+  color: var(--rubylode-home-text-muted);
+  text-decoration: none;
+}
+
+.rubylode-home .rubylode-home-grouping-option[aria-current="true"] {
+  background: var(--rubylode-home-accent-soft);
+  color: var(--rubylode-home-accent-strong);
+  font-weight: 600;
+}
+
+.rubylode-home-group + .rubylode-home-group {
+  margin-top: 12px;
+}
+
+.rubylode-home .rubylode-home-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home-group[data-group="overdue"] .rubylode-home-group-title {
+  color: var(--rubylode-home-warning);
+}
+
+.rubylode-home-count {
+  padding: 0 8px;
+  border-radius: var(--rubylode-home-chip-radius);
+  background: var(--rubylode-home-neutral-soft);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--rubylode-home-text-muted);
+}
+
+/* Ticket rows. */
+.rubylode-home-issue-list,
+.rubylode-home-activity-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rubylode-home-issue-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--rubylode-home-card-border);
+}
+
+.rubylode-home-issue-row:first-child {
+  border-top: 0;
+}
+
+.rubylode-home-issue-row--overdue {
+  box-shadow: inset 3px 0 0 var(--rubylode-home-warning);
+  padding-left: 10px;
+}
+
+.rubylode-home .rubylode-home-issue-link {
+  display: flex;
+  flex: 1 1 20rem;
+  gap: 10px;
+  min-width: 0;
+  color: var(--rubylode-home-text);
+  text-decoration: none;
+}
+
+.rubylode-home .rubylode-home-issue-link:hover .rubylode-home-issue-subject {
+  color: var(--rubylode-home-accent-strong);
+  text-decoration: underline;
+}
+
+.rubylode-home-issue-id {
+  flex: none;
+  min-width: 3.5em;
+  color: var(--rubylode-home-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.rubylode-home-issue-subject {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rubylode-home-issue-details {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.rubylode-home-issue-row--compact .rubylode-home-issue-link {
+  flex-basis: 100%;
+}
+
+.rubylode-home-issue-row--compact .rubylode-home-issue-details {
+  padding-left: calc(3.5em + 10px);
+}
+
+.rubylode-home-issue-project {
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home-progress {
+  width: 64px;
+}
+
+/* Chips. */
+.rubylode-home-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 9px;
+  border-radius: var(--rubylode-home-chip-radius);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.rubylode-home-chip--status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.rubylode-home-chip--status-new,
+.rubylode-home-chip--status-active {
+  background: var(--rubylode-home-accent-soft);
+  color: var(--rubylode-home-accent-strong);
+}
+
+.rubylode-home-chip--status-new::before {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+
+.rubylode-home-chip--status-closed {
+  background: var(--rubylode-home-success-soft);
+  color: var(--rubylode-home-success);
+}
+
+.rubylode-home-chip--priority-high {
+  background: var(--rubylode-home-caution-soft);
+  color: var(--rubylode-home-caution);
+}
+
+.rubylode-home-chip--priority-low {
+  background: var(--rubylode-home-neutral-soft);
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home-due {
+  color: var(--rubylode-home-text-muted);
+  white-space: nowrap;
+}
+
+.rubylode-home-due--overdue {
+  color: var(--rubylode-home-warning);
+  font-weight: 700;
+}
+
+.rubylode-home-due--today {
+  color: var(--rubylode-home-caution);
+  font-weight: 700;
+}
+
+/* Activity. */
+.rubylode-home-activity-row {
+  padding: 6px 0;
+  border-top: 1px solid var(--rubylode-home-card-border);
+}
+
+.rubylode-home-activity-row:first-child {
+  border-top: 0;
+}
+
+.rubylode-home-activity-title {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rubylode-home-activity-meta {
+  font-size: 0.8rem;
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home-empty,
+.rubylode-home-more {
+  margin: 8px 0 0;
+  color: var(--rubylode-home-text-muted);
+}
+
+/* Redmine's own blocks, below the home view. They sit outside .rubylode-home, so each value carries its fallback. */
+.rubylode-home-classic-blocks {
+  margin-top: 24px;
+  padding: 12px 20px;
+  border: 1px dashed #d0d5da;
+  border-radius: 10px;
+  background: var(--oc-white, #ffffff);
+}
+
+.rubylode-home-classic-blocks > summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.rubylode-home-classic-hint {
+  color: var(--oc-gray-6, #6b7480);
+}
+
+@media (max-width: 1000px) {
+  .rubylode-home-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rubylode-home-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

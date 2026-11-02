@@ -1,0 +1,17 @@
+<%# Replaces Redmine's My page with the home view. Redmine's own blocks stay below it, collapsed, and ?view=classic shows them alone. %>
+<% if params[:view] == "classic" %>
+  <p class="rubylode-home-classic-note">
+    <%= link_to l(:label_rubylode_home_back), my_page_path, class: "rubylode-home-back" %>
+  </p>
+  <h2><%= l(:label_my_page) %></h2>
+  <%= render partial: "my/rubylode_home_classic_blocks" %>
+<% else %>
+  <%= render partial: "rubylode_home/home", locals: { home: RubylodeHome::HomePage.new(User.current) } %>
+  <details id="rubylode-home-classic-blocks" class="rubylode-home-classic-blocks">
+    <summary><%= l(:label_rubylode_home_classic_blocks) %></summary>
+    <p class="rubylode-home-classic-hint"><%= l(:text_rubylode_home_classic_blocks) %></p>
+    <%= render partial: "my/rubylode_home_classic_blocks" %>
+  </details>
+<% end %>
+
+<% html_title(l(:label_my_page)) -%>

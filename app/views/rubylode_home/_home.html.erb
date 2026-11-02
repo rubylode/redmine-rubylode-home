@@ -1,0 +1,74 @@
+<%# The home view: greeting, four tiles, the assigned tickets, and the side cards. home is a RubylodeHome::HomePage. %>
+<% rules = home.rules %>
+<% grouping = rubylode_home_grouping %>
+<div class="rubylode-home" data-rubylode-home="my-page">
+  <header class="rubylode-home-header">
+    <div class="rubylode-home-heading">
+      <p class="rubylode-home-date"><%= rubylode_home_date(home.today) %></p>
+      <h2 class="rubylode-home-greeting"><%= rubylode_home_greeting(home.user) %></h2>
+      <p class="rubylode-home-summary"><%= rubylode_home_summary(home.tiles) %></p>
+    </div>
+    <div class="rubylode-home-actions">
+      <%= link_to l(:label_rubylode_home_classic_view), my_page_path(view: "classic"), class: "rubylode-home-button rubylode-home-button--quiet" %>
+      <% if home.can_add_issues? %>
+        <%= link_to new_issue_path, class: "rubylode-home-button rubylode-home-new-issue" do %>
+          <span aria-hidden="true">+</span> <%= l(:label_issue_new) %>
+        <% end %>
+      <% end %>
+    </div>
+  </header>
+
+  <%= render partial: "rubylode_home/tiles", locals: { tiles: home.tiles, rules: rules } %>
+
+  <div class="rubylode-home-columns">
+    <section class="rubylode-home-card rubylode-home-card--wide" data-card="assigned" aria-labelledby="rubylode-home-assigned-title">
+      <header class="rubylode-home-card-header">
+        <h3 id="rubylode-home-assigned-title" class="rubylode-home-card-title"><%= l(:label_rubylode_home_card_assigned) %></h3>
+        <nav class="rubylode-home-grouping" aria-label="<%= l(:label_rubylode_home_group_by) %>">
+          <span class="rubylode-home-grouping-label"><%= l(:label_rubylode_home_group_by) %></span>
+          <% RubylodeHome::IssueGroups::GROUPINGS.each do |option| %>
+            <%= link_to l(:"label_rubylode_home_group_by_#{option}"), my_page_path(group: option),
+                        class: "rubylode-home-grouping-option", aria: { current: (option == grouping).to_s } %>
+          <% end %>
+        </nav>
+        <%= link_to l(:label_rubylode_home_view_all), rubylode_home_tile_path(:assigned_open, rules), class: "rubylode-home-card-link" %>
+      </header>
+      <% groups = home.assigned_groups(grouping) %>
+      <% if groups.empty? %>
+        <p class="rubylode-home-empty"><%= l(:text_rubylode_home_empty_assigned) %>
+          <%= link_to l(:label_project_plural), projects_path %></p>
+      <% else %>
+        <% groups.each do |group| %>
+          <div class="rubylode-home-group" data-group="<%= group.key %>">
+            <h4 class="rubylode-home-group-title">
+              <%= rubylode_home_group_title(group) %>
+              <span class="rubylode-home-count"><%= group.size %></span>
+            </h4>
+            <ul class="rubylode-home-issue-list">
+              <%= render partial: "rubylode_home/issue_row", collection: group.issues, as: :issue,
+                         locals: { rules: rules, show_project: grouping != "project" } %>
+            </ul>
+          </div>
+        <% end %>
+        <% if home.more_assigned_issues? %>
+          <p class="rubylode-home-more">
+            <%= link_to l(:label_rubylode_home_more_assigned, shown: home.assigned_issues.size, total: home.tiles.first.count),
+                        rubylode_home_tile_path(:assigned_open, rules) %>
+          </p>
+        <% end %>
+      <% end %>
+    </section>
+
+    <div class="rubylode-home-side">
+      <%= render partial: "rubylode_home/issue_card",
+                 locals: { key: "due_soon", issues: home.due_soon_issues, rules: rules,
+                           link: rubylode_home_tile_path(:due_this_week, rules) } %>
+      <%= render partial: "rubylode_home/issue_card",
+                 locals: { key: "watched", issues: home.watched_issues, rules: rules,
+                           link: rubylode_home_tile_path(:watched, rules) } %>
+      <%= render partial: "rubylode_home/issue_card",
+                 locals: { key: "recently_updated", issues: home.recently_updated_issues, rules: rules, link: nil } %>
+      <%= render partial: "rubylode_home/activity", locals: { events: home.recent_events } %>
+    </div>
+  </div>
+</div>

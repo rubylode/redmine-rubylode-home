@@ -1,0 +1,21 @@
+<%# The last few things that happened in the projects the person can see. %>
+<section class="rubylode-home-card" data-card="activity" aria-labelledby="rubylode-home-activity-title">
+  <header class="rubylode-home-card-header">
+    <h3 id="rubylode-home-activity-title" class="rubylode-home-card-title"><%= l(:label_activity) %></h3>
+    <%= link_to l(:label_rubylode_home_view_all), activity_path, class: "rubylode-home-card-link" %>
+  </header>
+  <% if events.empty? %>
+    <p class="rubylode-home-empty"><%= l(:text_rubylode_home_empty_activity) %></p>
+  <% else %>
+    <ul class="rubylode-home-activity-list">
+      <% events.each do |event| %>
+        <li class="rubylode-home-activity-row" data-event-type="<%= event.event_type %>">
+          <%= link_to format_activity_title(event.event_title), event.event_url, class: "rubylode-home-activity-title" %>
+          <span class="rubylode-home-activity-meta">
+            <%= event.event_author.to_s %> &middot; <%= event.project.name %> &middot; <%= rubylode_home_time_ago(event.event_datetime) %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</section>

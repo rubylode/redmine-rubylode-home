@@ -1,0 +1,20 @@
+<%# The four numbers, each a link to the issue list that holds exactly those tickets. %>
+<ul class="rubylode-home-tiles">
+  <% tiles.each do |tile| %>
+    <li class="rubylode-home-tile rubylode-home-tile--<%= tile.tone %>" data-tile="<%= tile.key %>">
+      <%= link_to rubylode_home_tile_path(tile.key, rules), class: "rubylode-home-tile-link" do %>
+        <span class="rubylode-home-tile-label"><%= l(:"label_rubylode_home_tile_#{tile.key}") %></span>
+        <span class="rubylode-home-tile-count"><%= tile.count %></span>
+        <% if tile.share_percent %>
+          <span class="rubylode-home-tile-bar" role="img"
+                aria-label="<%= l(:label_rubylode_home_share, percent: tile.share_percent) %>">
+            <span class="rubylode-home-tile-bar-fill" style="width: <%= tile.share_percent %>%"></span>
+          </span>
+          <span class="rubylode-home-tile-note"><%= l(:label_rubylode_home_share, percent: tile.share_percent) %></span>
+        <% else %>
+          <span class="rubylode-home-tile-note"><%= l(:"text_rubylode_home_tile_#{tile.key}") %></span>
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
