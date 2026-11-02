@@ -5,9 +5,7 @@
 TL;DR: a friendlier My page for [Redmine](https://www.redmine.org): what's assigned to you, what's due, what's overdue
 and what you follow, on one page you can read at a glance.
 
-**Status: proposal, requirements pending.** Version 0.2.0 is a first working proposal, built before the owner's
-reference design arrived. The layout, wording and colours are expected to change; see `docs/roadmap/ROADMAP.md` for what
-is built, what waits for the reference, and the open questions.
+**Status: version 1.0.0.** See `docs/roadmap/ROADMAP.md` for what is built and what is still open, and "Compatibility and known limits" below.
 
 ![My page, grouped by project](docs/screenshots/my-page-by-project.png)
 
@@ -111,8 +109,7 @@ each with the `--rubylode-home` prefix. For example, in a theme's stylesheet:
 - The plugin replaces Redmine's `my/page` view. Another plugin or theme that replaces the same view will clash, and
   whichever loads last wins. Use `?view=classic` or remove one of them.
 - There is no dark mode. The stylesheet has no dark palette; a theme can supply one through the custom properties.
-- Layout, wording and colours are a proposal: the owner's design requirements are still pending (see
-  `docs/roadmap/ROADMAP.md`).
+- Layout, wording and colours are a first design and may still change; `docs/roadmap/ROADMAP.md` lists what is open.
 - The Overview (project page) and My tickets are not changed yet.
 - There are no settings and no permissions of its own; the English locale is the only one shipped.
 
@@ -128,6 +125,8 @@ in a Redmine 7 image with its test gems (`docker/test.Dockerfile`) and send the 
 ## Releasing
 
 Push a `vX.Y.Z` tag whose version matches `version` in `init.rb` and has an entry in `CHANGELOG.md`. CI runs the tests, builds `redmine_rubylode_home-X.Y.Z.zip` and publishes the GitHub release with the changelog entry as its notes. To build a release for a tag that already exists, use Actions, release, Run workflow.
+
+The text to paste when listing the plugin on www.redmine.org, and how to read the result of Check for updates, is in [docs/redmine-org-listing.md](docs/redmine-org-listing.md).
 
 ## License
 

@@ -51,7 +51,7 @@ class HomePageTest < Redmine::IntegrationTest
   test "the plugin registers with its id, name and version" do
     plugin = Redmine::Plugin.find(:redmine_rubylode_home)
     assert_equal "Rubylode Home", plugin.name
-    assert_equal "0.2.0", plugin.version
+    assert_equal "1.0.0", plugin.version
   end
 
   test "the My page greets the person, shows today's date, the four tiles and a new issue entry" do
@@ -193,5 +193,15 @@ class HomePageTest < Redmine::IntegrationTest
     get "/projects"
     assert_response :success
     assert_select "link[href*='rubylode_home']", count: 0
+  end
+
+  test "the plugin shows its project address and author on the Plugins page" do
+    plugin = Redmine::Plugin.find(:redmine_rubylode_home)
+    readme = File.read(File.expand_path("../../README.md", __dir__))
+    repository_name = readme[%r{git clone https://github\.com/rubylode/([\w-]+)\.git}, 1]
+    assert_equal "redmine-rubylode-home", repository_name
+    assert_equal "https://github.com/rubylode/#{repository_name}", plugin.url
+    assert_equal "Rubylode", plugin.author
+    assert_equal "https://github.com/rubylode", plugin.author_url
   end
 end

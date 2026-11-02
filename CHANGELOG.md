@@ -2,6 +2,11 @@
 
 All notable changes to this plugin. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.0] - 2026-11-02
+
+First stable release. Better home views: a My page with a greeting, four tiles and cards for the tickets assigned to you, due soon, watched and recently updated, plus status and priority chips and relative due dates. The known limits stay listed in the README.
+Its name, author and version are ready to list on redmine.org, and the plugin now shows its project address on Administration, Plugins.
+
 ## [0.2.0] - 2026-11-01
 
 A first working proposal of the home view, made before the requirements are written. Expect it to change.
