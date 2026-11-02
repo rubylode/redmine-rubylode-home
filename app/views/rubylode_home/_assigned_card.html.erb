@@ -1,0 +1,41 @@
+<%# The Assigned to me card: the open tickets of the person, grouped by project or by due date, cut at a limit with a link to the full list.
+    Used on the My page and, when the setting asks for it, on the welcome page. home is a RubylodeHome::HomePage. %>
+<% grouping_link = local_assigns.fetch(:grouping_link, ->(option) { my_page_path(group: option) }) %>
+<% show_milestone = local_assigns.fetch(:show_milestone, false) %>
+<section class="rubylode-home-card rubylode-home-card--wide" data-card="assigned" aria-labelledby="rubylode-home-assigned-title">
+  <header class="rubylode-home-card-header">
+    <h3 id="rubylode-home-assigned-title" class="rubylode-home-card-title"><%= l(:label_rubylode_home_card_assigned) %></h3>
+    <nav class="rubylode-home-grouping" aria-label="<%= l(:label_rubylode_home_group_by) %>">
+      <span class="rubylode-home-grouping-label"><%= l(:label_rubylode_home_group_by) %></span>
+      <% RubylodeHome::IssueGroups::GROUPINGS.each do |option| %>
+        <%= link_to l(:"label_rubylode_home_group_by_#{option}"), grouping_link.call(option),
+                    class: "rubylode-home-grouping-option", aria: { current: (option == grouping).to_s } %>
+      <% end %>
+    </nav>
+    <%= link_to l(:label_rubylode_home_view_all), rubylode_home_tile_path(:assigned_open, rules), class: "rubylode-home-card-link" %>
+  </header>
+  <% groups = home.assigned_groups(grouping) %>
+  <% if groups.empty? %>
+    <p class="rubylode-home-empty"><%= l(:text_rubylode_home_empty_assigned) %>
+      <%= link_to l(:label_project_plural), projects_path %></p>
+  <% else %>
+    <% groups.each do |group| %>
+      <div class="rubylode-home-group" data-group="<%= group.key %>">
+        <h4 class="rubylode-home-group-title">
+          <%= rubylode_home_group_title(group) %>
+          <span class="rubylode-home-count"><%= group.size %></span>
+        </h4>
+        <ul class="rubylode-home-issue-list">
+          <%= render partial: "rubylode_home/issue_row", collection: group.issues, as: :issue,
+                     locals: { rules: rules, show_project: grouping != "project", show_milestone: show_milestone } %>
+        </ul>
+      </div>
+    <% end %>
+    <% if home.more_assigned_issues? %>
+      <p class="rubylode-home-more">
+        <%= link_to l(:label_rubylode_home_more_assigned, shown: home.assigned_issues.size, total: home.tiles.first.count),
+                    rubylode_home_tile_path(:assigned_open, rules) %>
+      </p>
+    <% end %>
+  <% end %>
+</section>

@@ -2,6 +2,25 @@
 
 All notable changes to this plugin. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.0] - 2026-11-02
+
+A settings page, tickets on the welcome page and dates without times. Every default keeps the 1.0.0 behaviour, so an upgrade changes nothing until a setting is chosen.
+
+### Added
+
+- Administration, Plugins, Configure: three settings, validated on save.
+- "Welcome page content": the four tiles (default), or the tiles plus the signed-in person's open assigned tickets, grouped by project or by due date, with status, priority, due or overdue badge and milestone. Capped at 30 rows with a link to the full issue list, and one fixed set of queries however many tickets there are.
+- "Column for the tickets" on the welcome page: left or right (default right).
+- "Show dates without times in issue lists" (default off): the created, updated and closed columns and the added by and updated by lines on an issue page show the date only.
+
+### Changed
+
+- The Assigned to me card of My page is now a partial shared with the welcome page. The rows of My page load their milestone in the same preload, with no extra query per ticket.
+
+### Fixed
+
+- The "Due this week" and "Overdue" tiles showed "Translation missing" under the number when nothing was assigned to the person. Every tile now has its label and its text line, and a test keeps it that way.
+
 ## [1.0.0] - 2026-11-02
 
 First stable release. Better home views: a My page with a greeting, four tiles and cards for the tickets assigned to you, due soon, watched and recently updated, plus status and priority chips and relative due dates. The known limits stay listed in the README.

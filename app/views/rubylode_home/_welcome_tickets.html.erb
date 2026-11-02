@@ -1,0 +1,7 @@
+<%# The welcome page, when the plugin is set to show tickets: the same Assigned to me card as the My page, with its grouping control. %>
+<% home = rubylode_home_page %>
+<div class="rubylode-home rubylode-home-welcome-tickets" data-rubylode-home="welcome-tickets">
+  <%= render partial: "rubylode_home/assigned_card",
+             locals: { home: home, rules: home.rules, grouping: rubylode_home_grouping, show_milestone: true,
+                       grouping_link: ->(option) { home_path(group: option) } } %>
+</div>

@@ -42,4 +42,12 @@ class SummaryTilesTest < ActiveSupport::TestCase
     assert_equal %i[calm calm warning calm], tiles.map(&:tone)
     assert_equal %i[calm calm calm calm], tiles(overdue: 0).map(&:tone)
   end
+
+  # The view shows the text line when a tile has no share, which is the case when nothing is assigned.
+  test "every tile has both a label and a text line, so nothing reads translation missing" do
+    tiles.each do |tile|
+      assert I18n.exists?(:"label_rubylode_home_tile_#{tile.key}", :en), "label for #{tile.key}"
+      assert I18n.exists?(:"text_rubylode_home_tile_#{tile.key}", :en), "text for #{tile.key}"
+    end
+  end
 end

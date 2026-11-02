@@ -23,6 +23,11 @@ module RubylodeHomeHelper
     RubylodeHome::IssueGroups::GROUPINGS.include?(params[:group]) ? params[:group] : "project"
   end
 
+  # One HomePage per page drawn, so the tiles and the tickets block on the welcome page read the same lists once.
+  def rubylode_home_page
+    @rubylode_home_page ||= RubylodeHome::HomePage.new(User.current)
+  end
+
   def rubylode_home_greeting(user)
     zone = user.time_zone || Time.zone
     hour = Time.current.in_time_zone(zone).hour
@@ -80,6 +85,12 @@ module RubylodeHomeHelper
     return unless tone
 
     content_tag(:span, priority.name, class: "rubylode-home-chip rubylode-home-chip--priority rubylode-home-chip--priority-#{tone}")
+  end
+
+  def rubylode_home_milestone(issue)
+    return unless issue.fixed_version
+
+    content_tag(:span, issue.fixed_version.name, class: "rubylode-home-milestone", title: l(:field_fixed_version))
   end
 
   def rubylode_home_progress(issue)

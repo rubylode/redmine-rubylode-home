@@ -1,6 +1,6 @@
 <%# On the welcome page a signed-in person sees their four numbers and the way to their home view. %>
 <% if User.current.logged? %>
-  <% home = RubylodeHome::HomePage.new(User.current) %>
+  <% home = rubylode_home_page %>
   <section class="rubylode-home rubylode-home-welcome" data-rubylode-home="welcome">
     <header class="rubylode-home-card-header">
       <h3 class="rubylode-home-card-title"><%= l(:label_rubylode_home_your_work) %></h3>

@@ -1,5 +1,6 @@
 <%# One ticket. compact rows (the side cards) put the details on a second line. %>
 <% compact = local_assigns.fetch(:compact, false) %>
+<% show_milestone = local_assigns.fetch(:show_milestone, false) %>
 <li class="rubylode-home-issue-row<%= ' rubylode-home-issue-row--overdue' if rules.overdue?(issue.due_date) && !issue.closed? %><%= ' rubylode-home-issue-row--compact' if compact %>">
   <%= link_to issue_path(issue), class: "rubylode-home-issue-link" do %>
     <span class="rubylode-home-issue-id">#<%= issue.id %></span>
@@ -10,6 +11,7 @@
     <%= rubylode_home_status_chip(issue) %>
     <%= rubylode_home_priority_chip(issue) %>
     <%= rubylode_home_due(issue, rules) unless issue.closed? %>
+    <%= rubylode_home_milestone(issue) if show_milestone %>
     <%= rubylode_home_progress(issue) unless compact %>
   </span>
 </li>

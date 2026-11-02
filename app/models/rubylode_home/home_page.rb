@@ -23,7 +23,7 @@ module RubylodeHome
     CARD_LIMIT = 8
     ACTIVITY_LIMIT = 8
     ACTIVITY_DAYS = 30
-    ROW_ASSOCIATIONS = %i[project status priority tracker assigned_to].freeze
+    ROW_ASSOCIATIONS = %i[project status priority tracker assigned_to fixed_version].freeze
 
     attr_reader :user, :rules
 

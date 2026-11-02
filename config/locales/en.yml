@@ -23,6 +23,8 @@ en:
   label_rubylode_home_tile_overdue: "Overdue"
   label_rubylode_home_tile_watched: "Watching"
   text_rubylode_home_tile_assigned_open: "Open tickets"
+  text_rubylode_home_tile_due_this_week: "Open tickets due this week"
+  text_rubylode_home_tile_overdue: "Open tickets past their due date"
   text_rubylode_home_tile_watched: "Open tickets you follow"
   label_rubylode_home_share: "%{percent}% of your open tickets"
 
@@ -61,5 +63,25 @@ en:
   text_rubylode_home_empty_recently_updated: "Tickets you create, comment on or are assigned to show here once they change."
   text_rubylode_home_empty_activity: "Nothing has happened in your projects in the last 30 days."
 
+  label_rubylode_home_added_by_on: "Added by %{author} on %{date}"
+  label_rubylode_home_updated_by_on: "Updated by %{author} on %{date}"
+
   label_rubylode_home_your_work: "Your work"
   label_rubylode_home_open_home: "Open your home"
+
+  rubylode_home:
+    settings:
+      welcome_page_content: "Welcome page content"
+      welcome_page_content_tiles: "The four tiles"
+      welcome_page_content_tickets: "The tiles and my open tickets"
+      welcome_page_content_hint: "What a signed-in person sees on the welcome page. The second choice adds the tickets assigned to them, grouped by project or by due date."
+      welcome_page_column: "Column for the tickets"
+      welcome_page_column_hint: "Where the tickets block goes on the welcome page. The tiles stay in the left column."
+      column_left: "Left"
+      column_right: "Right"
+      dates_without_times: "Show dates without times in issue lists"
+      dates_without_times_hint: "The created, updated and closed columns of the issue list, and the added and updated lines on an issue page, show the date only, in each person's date format."
+    errors:
+      welcome_page_content_invalid: "Welcome page content must be one of: %{choices}."
+      welcome_page_column_invalid: "Column for the tickets must be one of: %{choices}."
+      dates_without_times_invalid: "Show dates without times must be one of: %{choices}."

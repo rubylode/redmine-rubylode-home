@@ -499,3 +499,21 @@ body.controller-my.action-page #content {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.rubylode-home-welcome-tickets {
+  margin: 16px 0;
+}
+
+.rubylode-home-milestone {
+  color: var(--rubylode-home-text-muted);
+  font-size: 0.85rem;
+}
+
+/* The welcome page columns are narrow, so the tickets there keep their details on a second line. */
+.rubylode-home-welcome-tickets .rubylode-home-issue-link {
+  flex-basis: 100%;
+}
+
+.rubylode-home-welcome-tickets .rubylode-home-issue-details {
+  padding-left: calc(3.5em + 10px);
+}

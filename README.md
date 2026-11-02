@@ -5,7 +5,7 @@
 TL;DR: a friendlier My page for [Redmine](https://www.redmine.org): what's assigned to you, what's due, what's overdue
 and what you follow, on one page you can read at a glance.
 
-**Status: version 1.0.0.** See `docs/roadmap/ROADMAP.md` for what is built and what is still open, and "Compatibility and known limits" below.
+**Status: version 1.1.0.** See `docs/roadmap/ROADMAP.md` for what is built and what is still open, and "Compatibility and known limits" below.
 
 ![My page, grouped by project](docs/screenshots/my-page-by-project.png)
 
@@ -13,6 +13,7 @@ Contents:
 
 - [What it does](#what-it-does)
 - [Installation](#installation)
+- [Settings](#settings)
 - [Try it](#try-it)
 - [Restyling it](#restyling-it)
 - [Compatibility and known limits](#compatibility-and-known-limits)
@@ -34,7 +35,8 @@ My page (`/my/page`, where Redmine sends you after login) becomes a home view:
   commented on or are assigned to) and a compact **Activity** list.
 - Every empty card says what would fill it.
 - A **New issue** button, shown when you may add tickets somewhere.
-- The welcome page (`/`) shows a signed-in person the same four tiles and a link to their home.
+- The welcome page (`/`) shows a signed-in person the same four tiles and a link to their home. A setting can add their
+  open tickets there too (see Settings).
 
 Nothing is lost: Redmine's own My page blocks stay at the bottom under "Your My page blocks", collapsed, and still
 work as before (add, remove, drag to reorder). **Classic My page** (`/my/page?view=classic`) shows them alone.
@@ -42,9 +44,13 @@ work as before (add, remove, drag to reorder). **Classic My page** (`/my/page?vi
 Every list goes through Redmine's own visibility rules, so a ticket you can't open never shows, and no list costs a
 query per row. Weeks start on the day set in Administration, Settings, Display (or your language's default).
 
-| Grouped by due date | Your own blocks, opened | Welcome page |
+| Grouped by due date | Your own blocks, opened | Welcome page, tiles |
 |---|---|---|
 | ![](docs/screenshots/my-page-by-due-date.png) | ![](docs/screenshots/my-page-classic-blocks-open.png) | ![](docs/screenshots/welcome-page.png) |
+
+The welcome page with the tickets option on (made-up demo data):
+
+![Welcome page with the tickets block](docs/screenshots/welcome-page-tickets.png)
 
 | Classic fallback (`?view=classic`) | Narrow screen |
 |---|---|
@@ -54,7 +60,7 @@ All screenshots show the made-up demo data from `script/seed_demo.rb`.
 
 ## Installation
 
-Redmine 7.0 or newer, on any database Redmine supports. The plugin adds no table and no setting. The folder must be named
+Redmine 7.0 or newer, on any database Redmine supports. The plugin adds no table. The folder must be named
 `redmine_rubylode_home`, the same as the plugin id.
 
 1. Put the plugin in your Redmine's `plugins` folder:
@@ -69,9 +75,19 @@ Redmine 7.0 or newer, on any database Redmine supports. The plugin adds no table
 With [Docker](https://www.docker.com), mount or copy the plugin to `/usr/src/redmine/plugins/redmine_rubylode_home`
 and restart the container.
 
-To upgrade, `git pull` and restart.
+To upgrade, `git pull` and restart. The settings below default to what the plugin did before they existed, so an upgrade changes nothing until you choose.
 
 To remove it, delete the folder and restart. Nothing is stored in the database, so there is nothing to clean up.
+
+## Settings
+
+Administration, Plugins, Rubylode Home, Configure. Each choice is checked when you save; a bad value shows the problem and saves nothing.
+
+| Setting | Choices | Default | What it does |
+|---|---|---|---|
+| Welcome page content | The four tiles, or the tiles and my open tickets | The four tiles | With the second choice a signed-in person also gets the **Assigned to me** card on the welcome page: their open tickets, grouped by project or by due date (the same Group by control as My page, kept in the address as `?group=`). Each row shows the ticket number, subject, status, priority chip, due date or overdue badge and the milestone (target version) when there is one. Up to 30 rows, then "Showing 30 of N. See them all in the issue list". Only tickets the person may see. `?view=classic` on My page is not affected. |
+| Column for the tickets | Left, right | Right | Which of Redmine's two welcome page columns holds the tickets block. The tiles stay on the left. |
+| Show dates without times in issue lists | On, off | Off | The created, updated and closed columns of the issue list, and the "Added by" and "Updated by" lines on an issue page, show the date only, in each person's date format (the due date column already is one). Only Redmine's own issue columns change; columns from other plugins, and other lists, keep their times. |
 
 ## Try it
 
@@ -111,7 +127,8 @@ each with the `--rubylode-home` prefix. For example, in a theme's stylesheet:
 - There is no dark mode. The stylesheet has no dark palette; a theme can supply one through the custom properties.
 - Layout, wording and colours are a first design and may still change; `docs/roadmap/ROADMAP.md` lists what is open.
 - The Overview (project page) and My tickets are not changed yet.
-- There are no settings and no permissions of its own; the English locale is the only one shipped.
+- Three settings (above) and no permissions of its own; the English locale is the only one shipped.
+- The welcome page tickets block uses the same queries as My page, so it shows at most 30 tickets however you group them. With dates without times on, the lines above an issue and its comments read "Added by Jo on 11/02/2026" instead of "3 days ago"; the "Updated ... ago" line at the top of the issue page keeps its age.
 
 ## Tests
 

@@ -19,7 +19,14 @@ module RedmineRubylodeHome
   # The My page itself is replaced by the plugin's view (app/views/my/page.html.erb). These hooks load the stylesheet
   # where the plugin draws something, and put the four tiles on the welcome page for a signed-in person.
   class Hooks < Redmine::Hook::ViewListener
-    render_on :view_welcome_index_left, partial: "rubylode_home/welcome"
+# The tiles always sit in the left column. With the "tickets" setting the open tickets follow in the column chosen in the settings.
+def view_welcome_index_left(context)
+  welcome_blocks(context, "left")
+end
+
+def view_welcome_index_right(context)
+  welcome_blocks(context, "right")
+end
 
     def view_layouts_base_html_head(context)
       return unless my_page?(context) || signed_in_welcome_page?(context)
@@ -27,7 +34,21 @@ module RedmineRubylodeHome
       stylesheet_link_tag("rubylode_home", plugin: "redmine_rubylode_home")
     end
 
-    private
+private
+
+def welcome_blocks(context, column)
+  return "".html_safe unless User.current.logged?
+
+  configuration = RubylodeHome::Configuration.current
+  blocks = []
+  blocks << render_welcome_partial(context, "rubylode_home/welcome") if column == "left"
+  blocks << render_welcome_partial(context, "rubylode_home/welcome_tickets") if configuration.welcome_page_tickets? && configuration.welcome_page_column == column
+  blocks.join.html_safe
+end
+
+def render_welcome_partial(context, partial)
+  context[:hook_caller].render(partial: partial, locals: context)
+end
 
     def my_page?(context)
       controller = context[:controller]

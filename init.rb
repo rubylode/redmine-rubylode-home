@@ -16,6 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 require "redmine"
+require_relative "lib/redmine_rubylode_home/defaults"
 
 Redmine::Plugin.register :redmine_rubylode_home do
   name "Rubylode Home"
@@ -23,13 +24,33 @@ Redmine::Plugin.register :redmine_rubylode_home do
   author_url "https://github.com/rubylode"
   url "https://github.com/rubylode/redmine-rubylode-home"
   description "Better home views for Redmine: My page, the Overview and My tickets"
-  version "1.0.0"
+  version "1.1.0"
   requires_redmine version_or_higher: "7.0.0"
+
+  settings default: RedmineRubylodeHome::Defaults::SETTINGS, partial: "settings/rubylode_home"
 end
 
 require_relative "lib/redmine_rubylode_home/hooks"
+require_relative "lib/redmine_rubylode_home/settings_controller_patch"
+require_relative "lib/redmine_rubylode_home/dates_without_times"
 
 # Redmine renders only a controller's own helpers, so the two pages the plugin draws on get the plugin's helper too.
 # This file runs on every code reload, and adding the same helper twice is harmless.
 MyController.helper(RubylodeHomeHelper)
 WelcomeController.helper(RubylodeHomeHelper)
+
+# Plugins load after the boot-time prepare callbacks have run, so apply the patch now and again after each code reload.
+apply_settings_controller_patch = lambda do
+  unless SettingsController.include?(RedmineRubylodeHome::SettingsControllerPatch)
+    SettingsController.prepend RedmineRubylodeHome::SettingsControllerPatch
+  end
+end
+apply_settings_controller_patch.call
+Rails.configuration.to_prepare(&apply_settings_controller_patch)
+
+# The same for the dates patch: applied once now and again after each reload, never twice.
+apply_dates_without_times = lambda do
+  QueriesHelper.prepend RedmineRubylodeHome::DatesWithoutTimes unless QueriesHelper.include?(RedmineRubylodeHome::DatesWithoutTimes)
+end
+apply_dates_without_times.call
+Rails.configuration.to_prepare(&apply_dates_without_times)
