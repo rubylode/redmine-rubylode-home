@@ -2,6 +2,17 @@
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.1] - 2026-11-03
+
+### Added
+
+- A Rubylode thumbnail at the top of the README.
+
+### Changed
+
+- The README is plainer and has a licence section.
+- The changelog entries are plainer.
+
 ## [1.1.0] - 2026-11-02
 
 Adds a settings page, tickets on the welcome page and dates without times. Every default keeps the 1.0.0 behaviour.

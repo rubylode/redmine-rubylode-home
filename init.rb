@@ -24,7 +24,7 @@ Redmine::Plugin.register :redmine_rubylode_home do
   author_url "https://github.com/rubylode"
   url "https://github.com/rubylode/redmine-rubylode-home"
   description "Better home views for Redmine: My page, the Overview and My tickets"
-  version "1.1.0"
+  version "1.1.1"
   requires_redmine version_or_higher: "7.0.0"
 
   settings default: RedmineRubylodeHome::Defaults::SETTINGS, partial: "settings/rubylode_home"

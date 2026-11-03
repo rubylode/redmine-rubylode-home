@@ -1,5 +1,7 @@
 # Rubylode Home for Redmine
 
+<p><img src="docs/thumbnail.png" alt="Rubylode Home plugin" width="160"></p>
+
 [![tests](https://github.com/rubylode/redmine-rubylode-home/actions/workflows/tests.yml/badge.svg)](https://github.com/rubylode/redmine-rubylode-home/actions/workflows/tests.yml)
 
 TL;DR: a My page for [Redmine](https://www.redmine.org) that shows what's assigned to you, what's due, what's overdue and
