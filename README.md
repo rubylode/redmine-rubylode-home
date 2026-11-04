@@ -2,7 +2,12 @@
 
 <p><img src="docs/thumbnail.png" alt="Rubylode Home plugin" width="160"></p>
 
-[![tests](https://github.com/rubylode/redmine-rubylode-home/actions/workflows/tests.yml/badge.svg)](https://github.com/rubylode/redmine-rubylode-home/actions/workflows/tests.yml)
+[![tests](https://img.shields.io/github/actions/workflow/status/rubylode/redmine-rubylode-home/tests.yml?branch=main&label=tests)](https://github.com/rubylode/redmine-rubylode-home/actions/workflows/tests.yml)
+[![security](https://img.shields.io/github/actions/workflow/status/rubylode/redmine-rubylode-home/security.yml?branch=main&label=security)](https://github.com/rubylode/redmine-rubylode-home/actions/workflows/security.yml)
+[![version](https://img.shields.io/github/v/tag/rubylode/redmine-rubylode-home?sort=semver&label=version)](https://github.com/rubylode/redmine-rubylode-home/tags)
+[![license](https://img.shields.io/github/license/rubylode/redmine-rubylode-home)](https://github.com/rubylode/redmine-rubylode-home/blob/main/LICENSE)
+![Redmine](https://img.shields.io/badge/Redmine-5.1%20%7C%206.0%20%7C%206.1%20%7C%207.0-b22222)
+![Ruby](https://img.shields.io/badge/Ruby-3.2%20%7C%203.3%20%7C%203.4%20%7C%204.0-cc342d)
 
 TL;DR: a My page for [Redmine](https://www.redmine.org) that shows what's assigned to you, what's due, what's overdue and
 what you watch, on one page.
