@@ -2,6 +2,28 @@
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.0.0] - Unreleased
+
+Brings the plugin to the Rubylode plugin standard: one settings class, one locale root, one README layout.
+
+### Upgrading
+
+- Run `bundle exec rake redmine:plugins:migrate RAILS_ENV=production` and restart Redmine, as for any upgrade.
+- No saved settings key is renamed (`welcome_page_content`, `welcome_page_column` and `dates_without_times` already match the standard), so this release has no migration and nothing to move or reverse. Saved settings carry over unchanged.
+- If you override this plugin's translations in your own locale file, move them to the new keys. Every key now sits under `rubylode_home`; the old flat `label_rubylode_home_*` and `text_rubylode_home_*` keys are gone. The lookup of old to new is in the Changed list below.
+- If other code calls `RedmineRubylodeHome::Defaults`, `RubylodeHome::Configuration` or the `RedmineRubylodeHome` module, use `RubylodeHome::Settings` and the `RubylodeHome` module instead.
+
+### Changed
+
+- `RubylodeHome::Settings` replaces `RubylodeHome::Configuration` and `RedmineRubylodeHome::Defaults`. The defaults are `RubylodeHome::Settings::DEFAULTS`. The `RedmineRubylodeHome` module is now `RubylodeHome`.
+- The locale file has one root, `rubylode_home`. Settings are under `rubylode_home.settings.<key>.label` and `.hint`; the rest is grouped by screen (`greeting`, `summary`, `classic`, `tiles`, `cards`, `activity`, `grouping`, `buckets`, `due`, `dates`, `welcome`, `errors`).
+- The welcome page column setting is labeled "Column" and is a select with Left and Right. Its choice labels and hints are reworded.
+- The description in Administration, Plugins reads "A home view for Redmine's My page: your tickets, due dates and watched tickets on one page". It no longer promises the Overview and My tickets, which are not built.
+- "Open tickets you follow" is now "Open tickets you watch", and "Open your home" is now "Open My page".
+- The "Showing N of M" line under the welcome page tickets ends with a period.
+- The README follows the standard headings: Install, Settings, Where it shows, Troubleshooting, Tests, License.
+
+
 ## [1.2.1] - 2026-11-04
 
 ### Changed
@@ -23,12 +45,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- The README is plainer and has a licence section.
-- The changelog entries are plainer.
+- The README is shorter and has a License section.
+- Reworded the changelog entries.
 
 ## [1.1.0] - 2026-11-02
 
-Adds a settings page, tickets on the welcome page and dates without times. Every default keeps the 1.0.0 behaviour.
+Adds a settings page, tickets on the welcome page and dates without times. Every default keeps the 1.0.0 behavior.
 
 ### Added
 
@@ -39,7 +61,7 @@ Adds a settings page, tickets on the welcome page and dates without times. Every
 
 ### Changed
 
-- Move the Assigned to me card of My page into a partial shared with the welcome page. Its rows load the milestone in the same preload, with no extra query per ticket.
+- The Assigned to me card of My page is now a partial shared with the welcome page. Its rows load the milestone in the same preload, with no extra query per ticket.
 
 ### Fixed
 
@@ -48,7 +70,10 @@ Adds a settings page, tickets on the welcome page and dates without times. Every
 ## [1.0.0] - 2026-11-02
 
 First stable release. A My page with a greeting, four tiles and cards for the tickets assigned to you, due soon, watched and recently updated, plus status and priority chips and relative due dates. The README lists the known limits.
-The name, author and version match the redmine.org listing, and the plugin shows its project address on Administration, Plugins.
+
+### Added
+
+- The name, author and version match the redmine.org listing, and the plugin shows its project address on Administration, Plugins.
 
 ## [0.2.0] - 2026-11-01
 
