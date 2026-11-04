@@ -9,7 +9,7 @@
       <p class="rubylode-home-summary"><%= rubylode_home_summary(home.tiles) %></p>
     </div>
     <div class="rubylode-home-actions">
-      <%= link_to l(:label_rubylode_home_classic_view), my_page_path(view: "classic"), class: "rubylode-home-button rubylode-home-button--quiet" %>
+      <%= link_to l(:"rubylode_home.classic.view"), my_page_path(view: "classic"), class: "rubylode-home-button rubylode-home-button--quiet" %>
       <% if home.can_add_issues? %>
         <%= link_to new_issue_path, class: "rubylode-home-button rubylode-home-new-issue" do %>
           <span aria-hidden="true">+</span> <%= l(:label_issue_new) %>

@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -46,8 +46,8 @@ class SummaryTilesTest < ActiveSupport::TestCase
   # The view shows the text line when a tile has no share, which is the case when nothing is assigned.
   test "every tile has both a label and a text line, so nothing reads translation missing" do
     tiles.each do |tile|
-      assert I18n.exists?(:"label_rubylode_home_tile_#{tile.key}", :en), "label for #{tile.key}"
-      assert I18n.exists?(:"text_rubylode_home_tile_#{tile.key}", :en), "text for #{tile.key}"
+      assert I18n.exists?(:"rubylode_home.tiles.#{tile.key}.label", :en), "label for #{tile.key}"
+      assert I18n.exists?(:"rubylode_home.tiles.#{tile.key}.note", :en), "text for #{tile.key}"
     end
   end
 end

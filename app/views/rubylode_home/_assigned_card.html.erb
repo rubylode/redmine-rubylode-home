@@ -4,19 +4,19 @@
 <% show_milestone = local_assigns.fetch(:show_milestone, false) %>
 <section class="rubylode-home-card rubylode-home-card--wide" data-card="assigned" aria-labelledby="rubylode-home-assigned-title">
   <header class="rubylode-home-card-header">
-    <h3 id="rubylode-home-assigned-title" class="rubylode-home-card-title"><%= l(:label_rubylode_home_card_assigned) %></h3>
-    <nav class="rubylode-home-grouping" aria-label="<%= l(:label_rubylode_home_group_by) %>">
-      <span class="rubylode-home-grouping-label"><%= l(:label_rubylode_home_group_by) %></span>
+    <h3 id="rubylode-home-assigned-title" class="rubylode-home-card-title"><%= l(:"rubylode_home.cards.assigned.title") %></h3>
+    <nav class="rubylode-home-grouping" aria-label="<%= l(:"rubylode_home.grouping.label") %>">
+      <span class="rubylode-home-grouping-label"><%= l(:"rubylode_home.grouping.label") %></span>
       <% RubylodeHome::IssueGroups::GROUPINGS.each do |option| %>
-        <%= link_to l(:"label_rubylode_home_group_by_#{option}"), grouping_link.call(option),
+        <%= link_to l(:"rubylode_home.grouping.#{option}"), grouping_link.call(option),
                     class: "rubylode-home-grouping-option", aria: { current: (option == grouping).to_s } %>
       <% end %>
     </nav>
-    <%= link_to l(:label_rubylode_home_view_all), rubylode_home_tile_path(:assigned_open, rules), class: "rubylode-home-card-link" %>
+    <%= link_to l(:"rubylode_home.view_all"), rubylode_home_tile_path(:assigned_open, rules), class: "rubylode-home-card-link" %>
   </header>
   <% groups = home.assigned_groups(grouping) %>
   <% if groups.empty? %>
-    <p class="rubylode-home-empty"><%= l(:text_rubylode_home_empty_assigned) %>
+    <p class="rubylode-home-empty"><%= l(:"rubylode_home.cards.assigned.empty") %>
       <%= link_to l(:label_project_plural), projects_path %></p>
   <% else %>
     <% groups.each do |group| %>
@@ -33,7 +33,7 @@
     <% end %>
     <% if home.more_assigned_issues? %>
       <p class="rubylode-home-more">
-        <%= link_to l(:label_rubylode_home_more_assigned, shown: home.assigned_issues.size, total: home.tiles.first.count),
+        <%= link_to l(:"rubylode_home.cards.assigned.more", shown: home.assigned_issues.size, total: home.tiles.first.count),
                     rubylode_home_tile_path(:assigned_open, rules) %>
       </p>
     <% end %>

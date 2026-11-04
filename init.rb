@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -16,18 +16,17 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 require "redmine"
-require_relative "lib/redmine_rubylode_home/defaults"
 
 Redmine::Plugin.register :redmine_rubylode_home do
   name "Rubylode Home"
   author "Rubylode"
   author_url "https://github.com/rubylode"
   url "https://github.com/rubylode/redmine-rubylode-home"
-  description "Better home views for Redmine: My page, the Overview and My tickets"
-  version "1.2.1"
+  description "A home view for Redmine's My page: your tickets, due dates and watched tickets on one page"
+  version "2.0.0"
   requires_redmine version_or_higher: "5.1.0"
 
-  settings default: RedmineRubylodeHome::Defaults::SETTINGS, partial: "settings/rubylode_home"
+  settings default: RubylodeHome::Settings::DEFAULTS, partial: "settings/rubylode_home"
 end
 
 require_relative "lib/redmine_rubylode_home/hooks"
@@ -41,8 +40,8 @@ WelcomeController.helper(RubylodeHomeHelper)
 
 # Plugins load after the boot-time prepare callbacks have run, so apply the patch now and again after each code reload.
 apply_settings_controller_patch = lambda do
-  unless SettingsController.include?(RedmineRubylodeHome::SettingsControllerPatch)
-    SettingsController.prepend RedmineRubylodeHome::SettingsControllerPatch
+  unless SettingsController.include?(RubylodeHome::SettingsControllerPatch)
+    SettingsController.prepend RubylodeHome::SettingsControllerPatch
   end
 end
 apply_settings_controller_patch.call
@@ -50,7 +49,7 @@ Rails.configuration.to_prepare(&apply_settings_controller_patch)
 
 # The same for the dates patch: applied once now and again after each reload, never twice.
 apply_dates_without_times = lambda do
-  QueriesHelper.prepend RedmineRubylodeHome::DatesWithoutTimes unless QueriesHelper.include?(RedmineRubylodeHome::DatesWithoutTimes)
+  QueriesHelper.prepend RubylodeHome::DatesWithoutTimes unless QueriesHelper.include?(RubylodeHome::DatesWithoutTimes)
 end
 apply_dates_without_times.call
 Rails.configuration.to_prepare(&apply_dates_without_times)

@@ -6,28 +6,29 @@
   </div>
 <% end %>
 <% scope = "rubylode_home.settings" %>
-<% value_of = ->(key) { settings[key].nil? ? RedmineRubylodeHome::Defaults::SETTINGS[key] : settings[key] } %>
+<% value_of = ->(key) { settings[key].nil? ? RubylodeHome::Settings::DEFAULTS[key] : settings[key] } %>
 
 <p>
-  <label for="settings_welcome_page_content"><%= l("#{scope}.welcome_page_content") %></label>
+  <label for="settings_welcome_page_content"><%= l("#{scope}.welcome_page_content.label") %></label>
   <%= select_tag "settings[welcome_page_content]",
-                 options_for_select([[l("#{scope}.welcome_page_content_tiles"), "tiles"], [l("#{scope}.welcome_page_content_tickets"), "tickets"]],
+                 options_for_select(RubylodeHome::Settings::WELCOME_PAGE_CONTENTS.map { |choice| [l("#{scope}.welcome_page_content.choices.#{choice}"), choice] },
                                     value_of.call("welcome_page_content")),
                  id: "settings_welcome_page_content" %>
-  <em class="info"><%= l("#{scope}.welcome_page_content_hint") %></em>
+  <em class="info"><%= l("#{scope}.welcome_page_content.hint") %></em>
 </p>
 
 <p>
-  <label for="settings_welcome_page_column"><%= l("#{scope}.welcome_page_column") %></label>
+  <label for="settings_welcome_page_column"><%= l("#{scope}.welcome_page_column.label") %></label>
   <%= select_tag "settings[welcome_page_column]",
-                 options_for_select([[l("#{scope}.column_left"), "left"], [l("#{scope}.column_right"), "right"]], value_of.call("welcome_page_column")),
+                 options_for_select(RubylodeHome::Settings::COLUMNS.map { |choice| [l("#{scope}.welcome_page_column.choices.#{choice}"), choice] },
+                                    value_of.call("welcome_page_column")),
                  id: "settings_welcome_page_column" %>
-  <em class="info"><%= l("#{scope}.welcome_page_column_hint") %></em>
+  <em class="info"><%= l("#{scope}.welcome_page_column.hint") %></em>
 </p>
 
 <p>
-  <label for="settings_dates_without_times"><%= l("#{scope}.dates_without_times") %></label>
+  <label for="settings_dates_without_times"><%= l("#{scope}.dates_without_times.label") %></label>
   <%= hidden_field_tag "settings[dates_without_times]", "0", id: nil %>
   <%= check_box_tag "settings[dates_without_times]", "1", value_of.call("dates_without_times").to_s == "1", id: "settings_dates_without_times" %>
-  <em class="info"><%= l("#{scope}.dates_without_times_hint") %></em>
+  <em class="info"><%= l("#{scope}.dates_without_times.hint") %></em>
 </p>

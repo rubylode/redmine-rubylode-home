@@ -1,87 +1,103 @@
 en:
-  label_rubylode_home_greeting_morning: "Good morning, %{name}"
-  label_rubylode_home_greeting_afternoon: "Good afternoon, %{name}"
-  label_rubylode_home_greeting_evening: "Good evening, %{name}"
-  text_rubylode_home_summary_clear: "Nothing is assigned to you right now."
-  text_rubylode_home_summary_assigned:
-    one: "You have 1 open ticket"
-    other: "You have %{count} open tickets"
-  text_rubylode_home_summary_overdue:
-    one: "1 is overdue"
-    other: "%{count} are overdue"
-  text_rubylode_home_summary_this_week:
-    one: "1 is due this week"
-    other: "%{count} are due this week"
-
-  label_rubylode_home_classic_view: "Classic My page"
-  label_rubylode_home_back: "Back to the home view"
-  label_rubylode_home_classic_blocks: "Your My page blocks"
-  text_rubylode_home_classic_blocks: "Redmine's own blocks, as you arranged them. Add, remove and drag them here as before."
-
-  label_rubylode_home_tile_assigned_open: "Assigned to me"
-  label_rubylode_home_tile_due_this_week: "Due this week"
-  label_rubylode_home_tile_overdue: "Overdue"
-  label_rubylode_home_tile_watched: "Watching"
-  text_rubylode_home_tile_assigned_open: "Open tickets"
-  text_rubylode_home_tile_due_this_week: "Open tickets due this week"
-  text_rubylode_home_tile_overdue: "Open tickets past their due date"
-  text_rubylode_home_tile_watched: "Open tickets you follow"
-  label_rubylode_home_share: "%{percent}% of your open tickets"
-
-  label_rubylode_home_card_assigned: "Assigned to me"
-  label_rubylode_home_card_due_soon: "Due soon"
-  label_rubylode_home_card_watched: "Watching"
-  label_rubylode_home_card_recently_updated: "Recently updated"
-  label_rubylode_home_group_by: "Group by"
-  label_rubylode_home_group_by_project: "Project"
-  label_rubylode_home_group_by_due_date: "Due date"
-  label_rubylode_home_view_all: "All"
-  label_rubylode_home_more_assigned: "Showing %{shown} of %{total}. See them all in the issue list"
-
-  label_rubylode_home_bucket_overdue: "Overdue"
-  label_rubylode_home_bucket_today: "Today"
-  label_rubylode_home_bucket_this_week: "Later this week"
-  label_rubylode_home_bucket_next_week: "Next week"
-  label_rubylode_home_bucket_later: "Later"
-  label_rubylode_home_bucket_no_due_date: "No due date"
-
-  label_rubylode_home_days_overdue:
-    one: "1 day overdue"
-    other: "%{count} days overdue"
-  label_rubylode_home_due_today: "Due today"
-  label_rubylode_home_due_tomorrow: "Due tomorrow"
-  label_rubylode_home_due_in_days:
-    one: "Due in 1 day"
-    other: "Due in %{count} days"
-  label_rubylode_home_due_on: "Due %{date}"
-  label_rubylode_home_done: "%{percent}% done"
-  label_rubylode_home_ago: "%{time} ago"
-
-  text_rubylode_home_empty_assigned: "Nothing is assigned to you. Pick up a ticket in one of your projects, or create one with New issue."
-  text_rubylode_home_empty_due_soon: "Nothing of yours is due in the next two weeks. Give a ticket a due date and it shows here."
-  text_rubylode_home_empty_watched: "Watch a ticket (the Watch link on its page) to follow it here."
-  text_rubylode_home_empty_recently_updated: "Tickets you create, comment on or are assigned to show here once they change."
-  text_rubylode_home_empty_activity: "Nothing has happened in your projects in the last 30 days."
-
-  label_rubylode_home_added_by_on: "Added by %{author} on %{date}"
-  label_rubylode_home_updated_by_on: "Updated by %{author} on %{date}"
-
-  label_rubylode_home_your_work: "Your work"
-  label_rubylode_home_open_home: "Open your home"
-
   rubylode_home:
+    greeting:
+      morning: "Good morning, %{name}"
+      afternoon: "Good afternoon, %{name}"
+      evening: "Good evening, %{name}"
+    summary:
+      clear: "Nothing is assigned to you right now."
+      assigned:
+        one: "You have 1 open ticket"
+        other: "You have %{count} open tickets"
+      overdue:
+        one: "1 is overdue"
+        other: "%{count} are overdue"
+      this_week:
+        one: "1 is due this week"
+        other: "%{count} are due this week"
+    classic:
+      view: "Classic My page"
+      back: "Back to the home view"
+      blocks_title: "Your My page blocks"
+      blocks_hint: "Redmine's own blocks, as you arranged them. Add, remove and drag them here as before."
+    tiles:
+      assigned_open:
+        label: "Assigned to me"
+        note: "Open tickets"
+      due_this_week:
+        label: "Due this week"
+        note: "Open tickets due this week"
+      overdue:
+        label: "Overdue"
+        note: "Open tickets past their due date"
+      watched:
+        label: "Watching"
+        note: "Open tickets you watch"
+      share: "%{percent}% of your open tickets"
+    cards:
+      assigned:
+        title: "Assigned to me"
+        empty: "Nothing is assigned to you. Pick up a ticket in one of your projects, or create one with New issue."
+        more: "Showing %{shown} of %{total}. See them all in the issue list."
+      due_soon:
+        title: "Due soon"
+        empty: "Nothing of yours is due in the next two weeks. Give a ticket a due date and it shows here."
+      watched:
+        title: "Watching"
+        empty: "Watch a ticket (the Watch link on its page) to follow it here."
+      recently_updated:
+        title: "Recently updated"
+        empty: "Tickets you create, comment on or are assigned to show here once they change."
+    activity:
+      empty: "Nothing has happened in your projects in the last 30 days."
+    grouping:
+      label: "Group by"
+      project: "Project"
+      due_date: "Due date"
+    view_all: "All"
+    buckets:
+      overdue: "Overdue"
+      today: "Today"
+      this_week: "Later this week"
+      next_week: "Next week"
+      later: "Later"
+      no_due_date: "No due date"
+    due:
+      days_overdue:
+        one: "1 day overdue"
+        other: "%{count} days overdue"
+      today: "Due today"
+      tomorrow: "Due tomorrow"
+      in_days:
+        one: "Due in 1 day"
+        other: "Due in %{count} days"
+      on: "Due %{date}"
+    progress:
+      done: "%{percent}% done"
+    ago: "%{time} ago"
+    dates:
+      added_by_on: "Added by %{author} on %{date}"
+      updated_by_on: "Updated by %{author} on %{date}"
+    welcome:
+      your_work: "Your work"
+      open_my_page: "Open My page"
     settings:
-      welcome_page_content: "Welcome page content"
-      welcome_page_content_tiles: "The four tiles"
-      welcome_page_content_tickets: "The tiles and my open tickets"
-      welcome_page_content_hint: "What a signed-in person sees on the welcome page. The second choice adds the tickets assigned to them, grouped by project or by due date."
-      welcome_page_column: "Column for the tickets"
-      welcome_page_column_hint: "Where the tickets block goes on the welcome page. The tiles stay in the left column."
-      column_left: "Left"
-      column_right: "Right"
-      dates_without_times: "Show dates without times in issue lists"
-      dates_without_times_hint: "The created, updated and closed columns of the issue list, and the added and updated lines on an issue page, show the date only, in each person's date format."
+      welcome_page_content:
+        label: "Welcome page content"
+        hint: "What a signed-in person sees on the welcome page. The tiles and open tickets choice adds the tickets assigned to them, grouped by project or by due date."
+        choices:
+          tiles: "The four tiles"
+          tickets: "The four tiles and the person's open tickets"
+      welcome_page_column:
+        label: "Column"
+        hint: "Left or right. Where the open tickets go on the welcome page. The tiles stay in the left column."
+        choices:
+          left: "Left"
+          right: "Right"
+      dates_without_times:
+        label: "Show dates without times in issue lists"
+        hint: "Shows the date only, in each person's date format, in the created, updated and closed columns of the issue list and in the added and updated lines on an issue page."
     errors:
       welcome_page_content_invalid: "Welcome page content must be one of: %{choices}."
-      welcome_page_column_invalid: "Column for the tickets must be one of: %{choices}."
+      welcome_page_column_invalid: "Column must be one of: %{choices}."
       dates_without_times_invalid: "Show dates without times must be one of: %{choices}."

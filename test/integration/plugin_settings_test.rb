@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -23,11 +23,11 @@ class PluginSettingsTest < Redmine::IntegrationTest
   SETTINGS_PATH = "/settings/plugin/redmine_rubylode_home".freeze
 
   setup do
-    Setting.send(:"plugin_#{RedmineRubylodeHome::PLUGIN_ID}=", RedmineRubylodeHome::Defaults::SETTINGS.dup)
+    Setting.send(:"plugin_#{RubylodeHome::Settings::PLUGIN_ID}=", RubylodeHome::Settings::DEFAULTS.dup)
   end
 
   def stored
-    Setting.send(:"plugin_#{RedmineRubylodeHome::PLUGIN_ID}")
+    Setting.send(:"plugin_#{RubylodeHome::Settings::PLUGIN_ID}")
   end
 
   test "the settings page opens with every field at its default" do
@@ -40,7 +40,25 @@ class PluginSettingsTest < Redmine::IntegrationTest
     assert_select "input[type=checkbox][name=?]:not([checked])", "settings[dates_without_times]"
   end
 
-  test "good settings are saved" do
+test "the welcome page column is a visible select labeled Column, with Left and Right" do
+  log_user("admin", "admin")
+  get SETTINGS_PATH
+
+  assert_select "label[for=settings_welcome_page_column]", text: "Column"
+  assert_select "select#settings_welcome_page_column option", 2
+  assert_select "select#settings_welcome_page_column option[value=left]", text: "Left"
+  assert_select "select#settings_welcome_page_column option[value=right]", text: "Right"
+end
+
+test "every setting has a label and a hint that ends in a period" do
+  RubylodeHome::Settings::DEFAULTS.each_key do |key|
+    assert I18n.exists?("rubylode_home.settings.#{key}.label", :en), "label for #{key}"
+    hint = I18n.t("rubylode_home.settings.#{key}.hint")
+    assert hint.end_with?("."), "hint for #{key} ends in a period"
+  end
+end
+
+test "good settings are saved" do
     log_user("admin", "admin")
     post SETTINGS_PATH, params: { settings: { "welcome_page_content" => "tickets", "welcome_page_column" => "left", "dates_without_times" => "1" } }
 

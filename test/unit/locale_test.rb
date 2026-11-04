@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -15,15 +15,19 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-module RedmineRubylodeHome
-  PLUGIN_ID = :redmine_rubylode_home
+require_relative "../test_helper"
 
-  # What a fresh install, and an upgrade from 1.0.0, starts with. The defaults keep the plugin's earlier behaviour.
-  module Defaults
-    SETTINGS = {
-      "welcome_page_content" => "tiles",
-      "welcome_page_column" => "right",
-      "dates_without_times" => "0"
-    }.freeze
+class LocaleTest < ActiveSupport::TestCase
+  LOCALE_PATH = File.expand_path("../../config/locales/en.yml", __dir__)
+
+  test "the locale file has one root, rubylode_home" do
+    assert_equal %w[rubylode_home], YAML.load_file(LOCALE_PATH).fetch("en").keys
+  end
+
+  test "no text a person reads has an em dash, an en dash or British spelling" do
+    text = File.read(LOCALE_PATH)
+
+    refute_match(/[–—]/, text)
+    refute_match(/colour|licence|visualis/i, text)
   end
 end

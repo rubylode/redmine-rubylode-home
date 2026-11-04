@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or

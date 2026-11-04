@@ -2,10 +2,10 @@
 <section class="rubylode-home-card" data-card="activity" aria-labelledby="rubylode-home-activity-title">
   <header class="rubylode-home-card-header">
     <h3 id="rubylode-home-activity-title" class="rubylode-home-card-title"><%= l(:label_activity) %></h3>
-    <%= link_to l(:label_rubylode_home_view_all), activity_path, class: "rubylode-home-card-link" %>
+    <%= link_to l(:"rubylode_home.view_all"), activity_path, class: "rubylode-home-card-link" %>
   </header>
   <% if events.empty? %>
-    <p class="rubylode-home-empty"><%= l(:text_rubylode_home_empty_activity) %></p>
+    <p class="rubylode-home-empty"><%= l(:"rubylode_home.activity.empty") %></p>
   <% else %>
     <ul class="rubylode-home-activity-list">
       <% events.each do |event| %>

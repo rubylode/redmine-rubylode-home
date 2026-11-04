@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -20,8 +20,8 @@ module RubylodeHome
   # A key that is not in the form is not checked, so a partial post cannot fail on what it does not mention.
   class SettingsValidator
     CHOICES = {
-      "welcome_page_content" => Configuration::WELCOME_PAGE_CONTENTS,
-      "welcome_page_column" => Configuration::COLUMNS,
+      "welcome_page_content" => Settings::WELCOME_PAGE_CONTENTS,
+      "welcome_page_column" => Settings::COLUMNS,
       "dates_without_times" => %w[0 1]
     }.freeze
 

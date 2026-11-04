@@ -3,8 +3,8 @@
   <% home = rubylode_home_page %>
   <section class="rubylode-home rubylode-home-welcome" data-rubylode-home="welcome">
     <header class="rubylode-home-card-header">
-      <h3 class="rubylode-home-card-title"><%= l(:label_rubylode_home_your_work) %></h3>
-      <%= link_to l(:label_rubylode_home_open_home), my_page_path, class: "rubylode-home-card-link" %>
+      <h3 class="rubylode-home-card-title"><%= l(:"rubylode_home.welcome.your_work") %></h3>
+      <%= link_to l(:"rubylode_home.welcome.open_my_page"), my_page_path, class: "rubylode-home-card-link" %>
     </header>
     <%= render partial: "rubylode_home/tiles", locals: { tiles: home.tiles, rules: home.rules } %>
   </section>

@@ -1,13 +1,13 @@
 <%# A side card with a short list of tickets: due soon, watched or recently updated. %>
 <section class="rubylode-home-card" data-card="<%= key %>" aria-labelledby="rubylode-home-<%= key %>-title">
   <header class="rubylode-home-card-header">
-    <h3 id="rubylode-home-<%= key %>-title" class="rubylode-home-card-title"><%= l(:"label_rubylode_home_card_#{key}") %></h3>
+    <h3 id="rubylode-home-<%= key %>-title" class="rubylode-home-card-title"><%= l(:"rubylode_home.cards.#{key}.title") %></h3>
     <% if link && issues.any? %>
-      <%= link_to l(:label_rubylode_home_view_all), link, class: "rubylode-home-card-link" %>
+      <%= link_to l(:"rubylode_home.view_all"), link, class: "rubylode-home-card-link" %>
     <% end %>
   </header>
   <% if issues.empty? %>
-    <p class="rubylode-home-empty"><%= l(:"text_rubylode_home_empty_#{key}") %></p>
+    <p class="rubylode-home-empty"><%= l(:"rubylode_home.cards.#{key}.empty") %></p>
   <% else %>
     <ul class="rubylode-home-issue-list">
       <%= render partial: "rubylode_home/issue_row", collection: issues, as: :issue,

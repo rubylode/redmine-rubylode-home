@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -35,7 +35,7 @@ module RubylodeHomeHelper
                   elsif hour < 18 then :afternoon
                   else :evening
                   end
-    l(:"label_rubylode_home_greeting_#{part_of_day}", name: user.firstname.presence || user.name)
+    l(:"rubylode_home.greeting.#{part_of_day}", name: user.firstname.presence || user.name)
   end
 
   def rubylode_home_date(date)
@@ -44,11 +44,11 @@ module RubylodeHomeHelper
 
   def rubylode_home_summary(tiles)
     counts = tiles.to_h { |tile| [tile.key, tile.count] }
-    return l(:text_rubylode_home_summary_clear) if counts[:assigned_open].zero?
+    return l(:"rubylode_home.summary.clear") if counts[:assigned_open].zero?
 
-    parts = [l(:text_rubylode_home_summary_assigned, count: counts[:assigned_open])]
-    parts << l(:text_rubylode_home_summary_overdue, count: counts[:overdue]) if counts[:overdue].positive?
-    parts << l(:text_rubylode_home_summary_this_week, count: counts[:due_this_week]) if counts[:due_this_week].positive?
+    parts = [l(:"rubylode_home.summary.assigned", count: counts[:assigned_open])]
+    parts << l(:"rubylode_home.summary.overdue", count: counts[:overdue]) if counts[:overdue].positive?
+    parts << l(:"rubylode_home.summary.this_week", count: counts[:due_this_week]) if counts[:due_this_week].positive?
     parts.to_sentence(locale: current_language) + "."
   end
 
@@ -58,11 +58,11 @@ module RubylodeHomeHelper
     return if days.nil?
 
     text, modifier =
-      if days.negative? then [l(:label_rubylode_home_days_overdue, count: -days), "overdue"]
-      elsif days.zero? then [l(:label_rubylode_home_due_today), "today"]
-      elsif days == 1 then [l(:label_rubylode_home_due_tomorrow), "soon"]
-      elsif days <= SOON_DAYS then [l(:label_rubylode_home_due_in_days, count: days), "soon"]
-      else [l(:label_rubylode_home_due_on, date: format_date(issue.due_date)), "later"]
+      if days.negative? then [l(:"rubylode_home.due.days_overdue", count: -days), "overdue"]
+      elsif days.zero? then [l(:"rubylode_home.due.today"), "today"]
+      elsif days == 1 then [l(:"rubylode_home.due.tomorrow"), "soon"]
+      elsif days <= SOON_DAYS then [l(:"rubylode_home.due.in_days", count: days), "soon"]
+      else [l(:"rubylode_home.due.on", date: format_date(issue.due_date)), "later"]
       end
     content_tag(:span, text, class: "rubylode-home-due rubylode-home-due--#{modifier}", title: format_date(issue.due_date))
   end
@@ -97,7 +97,7 @@ module RubylodeHomeHelper
     return unless issue.done_ratio.to_i.positive?
 
     content_tag(:span, class: "rubylode-home-progress", title: "#{issue.done_ratio}%",
-                       role: "img", aria: { label: l(:label_rubylode_home_done, percent: issue.done_ratio) }) do
+                       role: "img", aria: { label: l(:"rubylode_home.progress.done", percent: issue.done_ratio) }) do
       content_tag(:span, "", class: "rubylode-home-progress-fill", style: "width: #{issue.done_ratio.to_i}%")
     end
   end
@@ -106,7 +106,7 @@ module RubylodeHomeHelper
     if group.project
       link_to(group.project.name, project_issues_path(group.project, set_filter: 1, assigned_to_id: "me", status_id: "o"))
     else
-      l(:"label_rubylode_home_bucket_#{group.key}")
+      l(:"rubylode_home.buckets.#{group.key}")
     end
   end
 
@@ -124,7 +124,7 @@ module RubylodeHomeHelper
   end
 
   def rubylode_home_time_ago(time)
-    content_tag(:span, l(:label_rubylode_home_ago, time: distance_of_time_in_words(Time.current, time)),
+    content_tag(:span, l(:"rubylode_home.ago", time: distance_of_time_in_words(Time.current, time)),
                 title: format_time(time), class: "rubylode-home-time-ago")
   end
 end

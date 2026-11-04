@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -51,7 +51,7 @@ class HomePageTest < Redmine::IntegrationTest
   test "the plugin registers with its id, name and version" do
     plugin = Redmine::Plugin.find(:redmine_rubylode_home)
     assert_equal "Rubylode Home", plugin.name
-    assert_equal "1.2.1", plugin.version
+    assert_equal "2.0.0", plugin.version
   end
 
   test "the My page greets the person, shows today's date, the four tiles and a new issue entry" do

@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -15,13 +15,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-module RedmineRubylodeHome
+module RubylodeHome
   # Prepended once to QueriesHelper, and active only while the "dates without times" setting is on. It touches Redmine's own
   # created, updated and closed columns of an issue list and the "added by" and "updated by" lines of an issue page; every other column,
   # list and page, including the columns other plugins add, goes straight to Redmine.
   module DatesWithoutTimes
     ISSUE_COLUMNS = %i[created_on updated_on closed_on].freeze
-    LABELS_WITH_A_DATE = { label_added_time_by: :label_rubylode_home_added_by_on, label_updated_time_by: :label_rubylode_home_updated_by_on }.freeze
+    LABELS_WITH_A_DATE = { label_added_time_by: :"rubylode_home.dates.added_by_on", label_updated_time_by: :"rubylode_home.dates.updated_by_on" }.freeze
     PAGES_WITH_HISTORY = %w[issues journals].freeze
 
     def column_value(column, item, value)
@@ -42,7 +42,7 @@ module RedmineRubylodeHome
     private
 
     def dates_without_times?
-      RubylodeHome::Configuration.current.dates_without_times?
+      RubylodeHome::Settings.current.dates_without_times?
     end
   end
 end

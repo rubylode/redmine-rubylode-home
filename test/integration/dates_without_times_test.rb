@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -44,7 +44,7 @@ class DatesWithoutTimesTest < Redmine::IntegrationTest
   def on = "1"
 
   def switch(value)
-    Setting.send(:"plugin_#{RedmineRubylodeHome::PLUGIN_ID}=", RedmineRubylodeHome::Defaults::SETTINGS.merge("dates_without_times" => value))
+    Setting.send(:"plugin_#{RubylodeHome::Settings::PLUGIN_ID}=", RubylodeHome::Settings::DEFAULTS.merge("dates_without_times" => value))
   end
 
   def listed_cell(css_class)
@@ -83,7 +83,7 @@ class DatesWithoutTimesTest < Redmine::IntegrationTest
   end
 
   test "an upgrade with nothing stored keeps the times" do
-    Setting.send(:"plugin_#{RedmineRubylodeHome::PLUGIN_ID}=", {})
+    Setting.send(:"plugin_#{RubylodeHome::Settings::PLUGIN_ID}=", {})
     list_with_date_columns
 
     assert_equal format_time(CREATED), listed_cell("created_on")
@@ -126,6 +126,6 @@ class DatesWithoutTimesTest < Redmine::IntegrationTest
   end
 
   test "the patch is applied to the issue helper once" do
-    assert_equal 1, QueriesHelper.ancestors.count { |ancestor| ancestor == RedmineRubylodeHome::DatesWithoutTimes }
+    assert_equal 1, QueriesHelper.ancestors.count { |ancestor| ancestor == RubylodeHome::DatesWithoutTimes }
   end
 end

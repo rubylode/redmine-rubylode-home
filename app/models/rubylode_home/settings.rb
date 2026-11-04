@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -18,16 +18,24 @@
 module RubylodeHome
   # The plugin's settings, read with the defaults filled in. A stored value that is not one of the choices counts as
   # the default, so a hand-edited setting cannot break a page.
-  class Configuration
+  class Settings
+    PLUGIN_ID = :redmine_rubylode_home
     WELCOME_PAGE_CONTENTS = %w[tiles tickets].freeze
     COLUMNS = %w[left right].freeze
 
+    # What a fresh install, and an upgrade from 1.0.0, starts with. The defaults keep the plugin's earlier behavior.
+    DEFAULTS = {
+      "welcome_page_content" => "tiles",
+      "welcome_page_column" => "right",
+      "dates_without_times" => "0"
+    }.freeze
+
     def self.current
-      new(Setting.send(:"plugin_#{RedmineRubylodeHome::PLUGIN_ID}"))
+      new(Setting.send(:"plugin_#{PLUGIN_ID}"))
     end
 
     def initialize(stored_settings)
-      @settings = RedmineRubylodeHome::Defaults::SETTINGS.merge((stored_settings || {}).to_h.stringify_keys.compact)
+      @settings = DEFAULTS.merge((stored_settings || {}).to_h.stringify_keys.compact)
     end
 
     def welcome_page_content
@@ -49,7 +57,7 @@ module RubylodeHome
     private
 
     def choice(key, allowed)
-      allowed.include?(@settings[key].to_s) ? @settings[key].to_s : RedmineRubylodeHome::Defaults::SETTINGS[key]
+      allowed.include?(@settings[key].to_s) ? @settings[key].to_s : DEFAULTS[key]
     end
   end
 end

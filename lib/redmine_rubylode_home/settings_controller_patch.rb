@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -15,12 +15,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-module RedmineRubylodeHome
+module RubylodeHome
   # Redmine saves plugin settings without asking the plugin. This checks ours first: when something is wrong the form is
   # shown again with what the person typed and a list of the problems, and nothing is saved.
   module SettingsControllerPatch
     def plugin
-      return super unless request.post? && params[:id].to_s == PLUGIN_ID.to_s
+      return super unless request.post? && params[:id].to_s == Settings::PLUGIN_ID.to_s
 
       submitted = params[:settings] ? params[:settings].permit!.to_h : {}
       errors = RubylodeHome::SettingsValidator.errors_for(submitted)

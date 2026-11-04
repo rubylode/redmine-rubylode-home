@@ -1,4 +1,4 @@
-# Rubylode Home: better home views for Redmine
+# Rubylode Home: a home view for Redmine's My page
 # Copyright (C) 2026  Nick Gorbikoff
 #
 # This program is free software; you can redistribute it and/or
@@ -31,11 +31,11 @@ class WelcomeTicketsTest < Redmine::IntegrationTest
   end
 
   def teardown
-    Setting.send(:"plugin_#{RedmineRubylodeHome::PLUGIN_ID}=", RedmineRubylodeHome::Defaults::SETTINGS.dup)
+    Setting.send(:"plugin_#{RubylodeHome::Settings::PLUGIN_ID}=", RubylodeHome::Settings::DEFAULTS.dup)
   end
 
   def configure(overrides)
-    Setting.send(:"plugin_#{RedmineRubylodeHome::PLUGIN_ID}=", RedmineRubylodeHome::Defaults::SETTINGS.merge(overrides))
+    Setting.send(:"plugin_#{RubylodeHome::Settings::PLUGIN_ID}=", RubylodeHome::Settings::DEFAULTS.merge(overrides))
   end
 
   def assigned_issue(subject, due: nil, project_id: 1, priority_id: 5, **attributes)
@@ -141,7 +141,7 @@ class WelcomeTicketsTest < Redmine::IntegrationTest
 
     assert_select ".rubylode-home-welcome-tickets .rubylode-home-issue-row", RubylodeHome::HomePage::ASSIGNED_LIMIT
     assert_select ".rubylode-home-welcome-tickets .rubylode-home-more a[href*='/issues']",
-                  text: "Showing #{RubylodeHome::HomePage::ASSIGNED_LIMIT} of #{total}. See them all in the issue list"
+                  text: "Showing #{RubylodeHome::HomePage::ASSIGNED_LIMIT} of #{total}. See them all in the issue list."
   end
 
   test "a hostile subject, project name and milestone name are escaped" do
