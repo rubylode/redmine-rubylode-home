@@ -29,9 +29,9 @@ Redmine::Plugin.register :redmine_rubylode_home do
   settings default: RubylodeHome::Settings::DEFAULTS, partial: "settings/rubylode_home"
 end
 
-require_relative "lib/redmine_rubylode_home/hooks"
-require_relative "lib/redmine_rubylode_home/settings_controller_patch"
-require_relative "lib/redmine_rubylode_home/dates_without_times"
+require_relative "lib/rubylode_home/hooks"
+require_relative "lib/rubylode_home/settings_controller_patch"
+require_relative "lib/rubylode_home/dates_without_times"
 
 # Redmine renders only a controller's own helpers, so the two pages the plugin draws on get the plugin's helper too.
 # This file runs on every code reload, and adding the same helper twice is harmless.
