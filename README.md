@@ -7,7 +7,7 @@
 TL;DR: a My page for [Redmine](https://www.redmine.org) that shows what's assigned to you, what's due, what's overdue and
 what you watch, on one page.
 
-Status: version 1.1.0. `docs/roadmap/ROADMAP.md` lists what is built and what is open, and "Compatibility and known
+Status: version 1.2.0. `docs/roadmap/ROADMAP.md` lists what is built and what is open, and "Compatibility and known
 limits" below lists what doesn't work yet.
 
 ![My page, grouped by project](docs/screenshots/my-page-by-project.png)
@@ -65,7 +65,7 @@ All screenshots show the made-up demo data from `script/seed_demo.rb`.
 
 ## Installation
 
-Redmine 7.0 or newer, on any database Redmine supports. The plugin adds no table. The folder must be named
+Redmine 5.0 or newer, on any database Redmine supports. The plugin adds no table. The folder must be named
 `redmine_rubylode_home`, the same as the plugin id.
 
 1. Put the plugin in your Redmine's `plugins` folder:
@@ -123,7 +123,7 @@ each with the `--rubylode-home` prefix. For example, in a theme's stylesheet:
 
 ## Compatibility and known limits
 
-- Redmine 7.x (7.0.2 and the 7.0 stable branch are tested). Older versions are not supported.
+- Redmine 5.0 or newer. Tested in CI with the Rubylode plugins' own test suites on Redmine 7.0, 6.1, 6.0, 5.1 and 5.0. Older versions are not supported.
 - "Due this week" means up to the end of the calendar week, with the first day taken from Redmine's "Start calendars on"
   setting. Late in the week it is a short window: on a Saturday it covers two days. Overdue tickets are counted in
   "Overdue" only.
