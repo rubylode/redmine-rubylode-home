@@ -52,7 +52,7 @@ module RubylodeHomeHelper
     parts.to_sentence(locale: current_language) + "."
   end
 
-  # A short, relative due label and the modifier that colours it.
+  # A short, relative due label and the modifier that colors it.
   def rubylode_home_due(issue, rules)
     days = rules.days_until(issue.due_date)
     return if days.nil?

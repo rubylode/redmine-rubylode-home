@@ -1,5 +1,5 @@
 /*
- * Rubylode Home. Every colour, radius and size is a custom property on .rubylode-home, so a theme can restyle the page by
+ * Rubylode Home. Every color, radius and size is a custom property on .rubylode-home, so a theme can restyle the page by
  * setting them, without touching the rules below. The defaults fall back to Redmine 7's own palette where it has one.
  */
 .rubylode-home {
