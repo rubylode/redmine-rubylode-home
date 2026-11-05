@@ -28,7 +28,7 @@ class DocsTest < ActiveSupport::TestCase
   end
 
   test "the changelog has a 2.0.0 entry" do
-    assert_match(/^## \[2\.0\.0\] - Unreleased$/, File.read(File.join(ROOT, "CHANGELOG.md")))
+    assert_match(/^## \[2\.0\.0\] - (Unreleased|\d{4}-\d{2}-\d{2})$/, File.read(File.join(ROOT, "CHANGELOG.md")))
   end
 
   test "the description does not promise what is not built" do
