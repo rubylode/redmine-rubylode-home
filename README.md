@@ -12,7 +12,7 @@
 TL;DR: a My page for [Redmine](https://www.redmine.org) that shows what's assigned to you, what's due, what's overdue and
 what you watch, on one page.
 
-Status: version 2.0.0. `docs/roadmap/ROADMAP.md` lists what is built and what is open. The Overview (project page) and
+Status: version 2.1.0. `docs/roadmap/ROADMAP.md` lists what is built and what is open. The Overview (project page) and
 My tickets are not changed. Upgrading from 1.x changes no saved setting (see the [changelog](CHANGELOG.md)).
 
 ![My page, grouped by project](docs/screenshots/my-page-by-project.png)

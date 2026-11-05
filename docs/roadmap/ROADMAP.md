@@ -1,6 +1,6 @@
 # Roadmap
 
-**Status: version 2.0.0.** The list below is what is built and what is open.
+**Status: version 2.1.0.** The list below is what is built and what is open.
 
 ## Goal
 

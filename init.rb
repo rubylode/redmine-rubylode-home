@@ -23,7 +23,7 @@ Redmine::Plugin.register :redmine_rubylode_home do
   author_url "https://github.com/rubylode"
   url "https://github.com/rubylode/redmine-rubylode-home"
   description "A home view for Redmine's My page: your tickets, due dates and watched tickets on one page"
-  version "2.0.0"
+  version "2.1.0"
   requires_redmine version_or_higher: "5.1.0"
 
   settings default: RubylodeHome::Settings::DEFAULTS, partial: "settings/rubylode_home"

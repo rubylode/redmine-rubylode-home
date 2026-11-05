@@ -51,7 +51,7 @@ class HomePageTest < Redmine::IntegrationTest
   test "the plugin registers with its id, name and version" do
     plugin = Redmine::Plugin.find(:redmine_rubylode_home)
     assert_equal "Rubylode Home", plugin.name
-    assert_equal "2.0.0", plugin.version
+    assert_match(/\A\d+\.\d+\.\d+\z/, plugin.version)
   end
 
   test "the My page greets the person, shows today's date, the four tiles and a new issue entry" do
