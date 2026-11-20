@@ -2,6 +2,12 @@
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.1.2] - 2026-11-19
+
+### Changed
+
+- The release zip holds only what Redmine needs: the tests, the docs and the development scripts are left out.
+
 ## [2.1.1] - 2026-11-19
 
 No change to what the plugin does. The redmine.org listing text names the current version.
