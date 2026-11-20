@@ -3,8 +3,8 @@
 .gitattributes export-ignore
 docker export-ignore
 docker-compose.yml export-ignore
-docs/demo export-ignore
-docs/screenshots export-ignore
-docs/thumbnail.png export-ignore
 bin/demo export-ignore
 script export-ignore
+docs export-ignore
+test export-ignore
+bin export-ignore
