@@ -79,6 +79,33 @@ test "good settings are saved" do
     assert_equal "0", stored["dates_without_times"]
   end
 
+  test "the settings page has the links textarea and the title field at their defaults" do
+    log_user("admin", "admin")
+    get SETTINGS_PATH
+
+    assert_select "textarea[name=?]", "settings[links]"
+    assert_select "input[type=text][name=?][value=?]", "settings[links_title]", "Services"
+  end
+
+  test "good links are saved" do
+    log_user("admin", "admin")
+    post SETTINGS_PATH, params: { settings: { "links" => "Status | https://status.example.com", "links_title" => "Tools" } }
+
+    assert_redirected_to SETTINGS_PATH
+    assert_equal "Status | https://status.example.com", stored["links"]
+    assert_equal "Tools", stored["links_title"]
+  end
+
+  test "a bad link line shows its line number, keeps what was typed and saves nothing" do
+    log_user("admin", "admin")
+    post SETTINGS_PATH, params: { settings: { "links" => "Status | https://status.example.com\nBad | javascript:alert(1)" } }
+
+    assert_response :unprocessable_entity
+    assert_select "#errorExplanation li", text: /Links, line 2/
+    assert_select "textarea[name=?]", "settings[links]", text: /javascript:alert\(1\)/
+    assert_equal "", stored["links"], "nothing was saved"
+  end
+
   test "a person who is not an administrator cannot open the page" do
     log_user("jsmith", "jsmith")
     get SETTINGS_PATH

@@ -34,10 +34,24 @@ module RubylodeHome
     end
 
     def errors
+      choice_errors + link_errors
+    end
+
+    private
+
+    def choice_errors
       CHOICES.filter_map do |key, allowed|
         next if !@settings.key?(key) || allowed.include?(@settings[key].to_s)
 
         I18n.t("rubylode_home.errors.#{key}_invalid", choices: allowed.join(", "))
+      end
+    end
+
+    def link_errors
+      return [] unless @settings.key?("links")
+
+      LinkLineParser.parse(@settings["links"]).errors.map do |line_error|
+        I18n.t("rubylode_home.errors.link_line_prefix", line_number: line_error.line_number, message: line_error.message)
       end
     end
   end

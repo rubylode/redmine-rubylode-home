@@ -2,6 +2,12 @@
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+
+- A Links setting: one `Name | URL` per line, shown as a row of pills above the tiles on My page and the welcome page, under a heading set by the new Links title setting (Services by default).
+
 ## [2.1.2] - 2026-11-19
 
 ### Changed

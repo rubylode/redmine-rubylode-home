@@ -27,7 +27,9 @@ module RubylodeHome
     DEFAULTS = {
       "welcome_page_content" => "tiles",
       "welcome_page_column" => "right",
-      "dates_without_times" => "0"
+      "dates_without_times" => "0",
+      "links" => "",
+      "links_title" => "Services"
     }.freeze
 
     def self.current
@@ -52,6 +54,15 @@ module RubylodeHome
 
     def dates_without_times?
       @settings["dates_without_times"].to_s == "1"
+    end
+
+    def links
+      LinkLineParser.parse(@settings["links"]).links
+    end
+
+    def links_title
+      title = @settings["links_title"].to_s.strip
+      title.empty? ? DEFAULTS["links_title"] : title
     end
 
     private

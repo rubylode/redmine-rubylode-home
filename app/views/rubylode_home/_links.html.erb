@@ -1,0 +1,15 @@
+<%# The links list from the settings, as a row of pills. Draws nothing when no valid link is set. %>
+<% configuration = RubylodeHome::Settings.current %>
+<% links = configuration.links %>
+<% if links.any? %>
+  <section class="rubylode-home rubylode-home-links" data-rubylode-home="links">
+    <h3 class="rubylode-home-links-title"><%= configuration.links_title %></h3>
+    <ul class="rubylode-home-links-list">
+      <% links.each do |link| %>
+        <li class="rubylode-home-links-item">
+          <%= link_to link.name, link.url, class: "rubylode-home-link-pill", target: "_blank", rel: "noopener noreferrer" %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

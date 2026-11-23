@@ -52,6 +52,8 @@ keeps the behavior of version 1.0.0.
 | Welcome page content | The four tiles, or the four tiles and the person's open tickets | The four tiles | With the second choice a signed-in person also gets the Assigned to me card on the welcome page: their open tickets, grouped by project or by due date, up to 30 rows. Only tickets the person may see. |
 | Column | Left, right | Right | Which of Redmine's two welcome page columns holds the open tickets. The tiles stay on the left. |
 | Show dates without times in issue lists | On, off | Off | Shows the date only, in each person's date format, in the created, updated and closed columns of the issue list and in the "Added by" and "Updated by" lines on an issue page. Only Redmine's own issue columns change; columns from other plugins, and other lists, keep their times. |
+| Links | One line per link, `Name \| https://address` | Empty | A row of link pills above the tiles on My page and the welcome page (signed-in people only on the welcome page). Blank lines and lines starting with `#` are skipped. Only `http` and `https` addresses are accepted; a bad line is reported with its line number and nothing is saved. Links open in a new tab. With no valid link the section is not drawn. |
+| Links title | Text | Services | The heading above the links. Empty means Services. |
 
 ## Where it shows
 
@@ -131,7 +133,7 @@ each with the `--rubylode-home` prefix. For example, in a theme's stylesheet:
 - **There is no dark mode.** The stylesheet has no dark palette; a theme can supply one through the custom properties.
 - **Only English is translated.** Only the English locale ships.
 
-The plugin has three settings and no permissions of its own. Tested in CI on Redmine 7.0, 6.1, 6.0 and 5.1. Older
+The plugin has five settings and no permissions of its own. Tested in CI on Redmine 7.0, 6.1, 6.0 and 5.1. Older
 versions are not supported.
 
 ## Tests

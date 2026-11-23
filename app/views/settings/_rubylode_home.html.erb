@@ -27,6 +27,18 @@
 </p>
 
 <p>
+  <label for="settings_links_title"><%= l("#{scope}.links_title.label") %></label>
+  <%= text_field_tag "settings[links_title]", value_of.call("links_title"), id: "settings_links_title", size: 30 %>
+  <em class="info"><%= l("#{scope}.links_title.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_links"><%= l("#{scope}.links.label") %></label>
+  <%= text_area_tag "settings[links]", value_of.call("links"), id: "settings_links", rows: 8, cols: 70, placeholder: "Status | https://status.example.com" %>
+  <em class="info"><%= l("#{scope}.links.hint") %></em>
+</p>
+
+<p>
   <label for="settings_dates_without_times"><%= l("#{scope}.dates_without_times.label") %></label>
   <%= hidden_field_tag "settings[dates_without_times]", "0", id: nil %>
   <%= check_box_tag "settings[dates_without_times]", "1", value_of.call("dates_without_times").to_s == "1", id: "settings_dates_without_times" %>

@@ -209,6 +209,49 @@ body.controller-my.action-page #content {
   box-shadow: var(--rubylode-home-card-shadow);
 }
 
+/* Links: a heading and a wrapping row of pills. */
+.rubylode-home-links {
+  margin: 0 0 var(--rubylode-home-gap);
+}
+
+.rubylode-home .rubylode-home-links-title {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rubylode-home-text-muted);
+}
+
+.rubylode-home-links-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rubylode-home-links-item {
+  margin: 0;
+  padding: 0;
+}
+
+.rubylode-home .rubylode-home-link-pill {
+  display: inline-block;
+  padding: 4px 14px;
+  border: 1px solid var(--rubylode-home-card-border);
+  border-radius: var(--rubylode-home-chip-radius);
+  background: var(--rubylode-home-card-background);
+  color: var(--rubylode-home-accent-strong);
+  text-decoration: none;
+}
+
+.rubylode-home .rubylode-home-link-pill:hover {
+  background: var(--rubylode-home-accent-soft);
+  border-color: var(--rubylode-home-accent);
+}
+
 .rubylode-home-welcome {
   margin: 16px 0;
   background: var(--rubylode-home-page-background);

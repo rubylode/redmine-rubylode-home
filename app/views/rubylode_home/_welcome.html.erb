@@ -1,5 +1,6 @@
 <%# On the welcome page a signed-in person sees their four numbers and the way to their home view. %>
 <% if User.current.logged? %>
+  <%= render partial: "rubylode_home/links" %>
   <% home = rubylode_home_page %>
   <section class="rubylode-home rubylode-home-welcome" data-rubylode-home="welcome">
     <header class="rubylode-home-card-header">

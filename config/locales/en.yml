@@ -97,7 +97,17 @@ en:
       dates_without_times:
         label: "Show dates without times in issue lists"
         hint: "Shows the date only, in each person's date format, in the created, updated and closed columns of the issue list and in the added and updated lines on an issue page."
+      links:
+        label: "Links"
+        hint: "One link per line, as Name | https://address. Blank lines and lines starting with # are skipped. Only http and https addresses are shown."
+      links_title:
+        label: "Links title"
+        hint: "The heading above the links on the welcome page and My page. Empty means Services."
     errors:
+      link_field_count: "needs %{count} fields separated by |, found %{found}"
+      link_name_missing: "the name is empty"
+      link_url_invalid: "%{url} is not a web address (use http:// or https://)"
+      link_line_prefix: "Links, line %{line_number}: %{message}"
       welcome_page_content_invalid: "Welcome page content must be one of: %{choices}."
       welcome_page_column_invalid: "Column must be one of: %{choices}."
       dates_without_times_invalid: "Show dates without times must be one of: %{choices}."

@@ -42,4 +42,23 @@ class SettingsTest < ActiveSupport::TestCase
     assert_equal "tiles", settings.welcome_page_content
     assert_equal "right", settings.welcome_page_column
   end
+
+  test "with nothing stored there are no links and the title is Services" do
+    settings = RubylodeHome::Settings.new(nil)
+
+    assert_empty settings.links
+    assert_equal "Services", settings.links_title
+  end
+
+  test "stored links are parsed and invalid lines are left out" do
+    settings = RubylodeHome::Settings.new("links" => "Status | https://status.example.com\nBad | javascript:alert(1)",
+                                          "links_title" => " Team ")
+
+    assert_equal ["Status"], settings.links.map(&:name)
+    assert_equal "Team", settings.links_title
+  end
+
+  test "an empty title counts as the default" do
+    assert_equal "Services", RubylodeHome::Settings.new("links_title" => "").links_title
+  end
 end

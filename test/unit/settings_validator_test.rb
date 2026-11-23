@@ -36,4 +36,21 @@ class SettingsValidatorTest < ActiveSupport::TestCase
     assert_match(/dates without times/i, errors_for("dates_without_times" => "yes").first)
     assert_equal 3, errors_for("welcome_page_content" => "", "welcome_page_column" => "", "dates_without_times" => "").size
   end
+
+  test "valid, blank and comment link lines have no errors" do
+    assert_empty errors_for("links" => "# links\n\nStatus | https://status.example.com\n")
+    assert_empty errors_for("links" => "")
+  end
+
+  test "each bad link line is reported with its line number" do
+    errors = errors_for("links" => "Status | https://status.example.com\nNo address\nBad | javascript:alert(1)")
+
+    assert_equal 2, errors.size
+    assert_match(/Links, line 2:/, errors.first)
+    assert_match(/Links, line 3:.*javascript:alert\(1\)/, errors.last)
+  end
+
+  test "links are not checked when the post does not mention them" do
+    assert_empty RubylodeHome::SettingsValidator.errors_for("welcome_page_column" => "left")
+  end
 end
